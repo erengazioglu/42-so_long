@@ -1,7 +1,16 @@
 CC		= cc
 NAME	= so_long
 CFLAGS	= -Wall -Werror -Wextra -g
-LIBS	= -Llibft -lft -Lminilibx-linux -lmlx_Linux -lXext -lX11
+
+# os-specific instructions
+OS		= $(shell uname -s)
+ifeq ($(OS),Linux)
+    LIBS = -Llibft -lft -Lminilibx-linux -lmlx_Linux -lXext -lX11 -lm
+endif
+ifeq ($(OS),Darwin)
+    LIBS = -Llibft -lft -Lminilibx-linux -lmlx_Darwin -L/usr/X11/lib -lXext -lX11 -lm
+endif
+
 SRC		= \
 		src/main.c
 
