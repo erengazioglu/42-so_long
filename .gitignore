@@ -1,3 +1,5 @@
 minilibx-linux/
+minilibx_opengl*/
 *.out
 *.bmp
+*.tgz
