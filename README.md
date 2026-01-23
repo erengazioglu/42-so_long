@@ -16,7 +16,8 @@ _(TBD)_
 
 ### Implementation
 
-_(TBD)_
+- Created a game object (`t_game`) that holds all pertinent data & can be passed around.
+- Game assets are held in a linked list for a more straightforward cleanup.
 
 
 ## Instructions

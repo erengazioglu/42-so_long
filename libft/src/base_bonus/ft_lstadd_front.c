@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 03:14:40 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/01/15 14:40:10 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/01/23 13:39:37 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,6 @@
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {
 	new->next = *lst;
+	(*lst)->prev = new;
 	*lst = new;
 }

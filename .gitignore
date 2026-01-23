@@ -4,4 +4,4 @@ minilibx_mms*/
 *.out
 *.bmp
 *.tgz
-test.out.dSYM
+*.dSYM/
