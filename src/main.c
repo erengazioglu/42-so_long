@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 17:50:53 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/01/24 11:26:12 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/01/24 12:07:25 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,24 @@ void	*load_image_file(t_game *game, char *filepath, int *w, int *h)
 	return (img);
 }
 
+t_game	*new_game(char *title, int w, int h)
+{
+	t_game	*game;
+
+	game = malloc(sizeof(t_game));
+	if (!game)
+		return (NULL);
+	game->ctx = mlx_init();
+	game->win = mlx_new_window(
+		game->ctx,
+		w * GRID_SIZE * GRID_MULT,
+		h * GRID_SIZE * GRID_MULT,
+		title
+	);
+	game->imglist = NULL;
+	return (game);
+}
+
 int	main(void)
 {
 	t_game	*game;
@@ -76,19 +94,7 @@ int	main(void)
 	int		w;
 	int		h;
 
-	game = malloc(sizeof(t_game));
-	if (!game)
-	{
-		ft_printf("Malloc error, quitting\n");
-		return (1);
-	}
-	game->ctx = mlx_init();
-	game->win = mlx_new_window(
-		game->ctx, 
-		10 * GRID_SIZE * GRID_MULT,
-		10 * GRID_SIZE * GRID_MULT, 
-		"Hello!"
-	);
+	game = new_game("Hello", 10, 10);
 	mlx_key_hook(game->win, &handle_keypress, game);
 	wall = load_image_file(game, "assets/wall-01_x3.xpm", &w, &h);
 	empty = load_image_file(game, "assets/empty-01_x3.xpm", &w, &h);
