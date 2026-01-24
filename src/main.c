@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 17:50:53 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/01/24 12:32:56 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/01/24 15:10:01 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,32 +17,30 @@ void	cleanup_images(t_game *game)
 {
 	while (game->imglist)
 	{
-		ft_printf("freeing image\n");
-		ft_printf("image: %p\n", game->imglist->content);
-		game->imglist = NULL;
-		// mlx_destroy_image(game->ctx, game->imglist->content);
-		// if (game->imglist->next)
-		// {
-		// 	ft_printf("%sthere's more than one\n", GRN);
-		// 	game->imglist = game->imglist->next;
-		// 	free(game->imglist->prev);
-		// }
-		// else
-		// {
-		// 	free(game->imglist);
-		// 	game->imglist = NULL;
-		// }
+		ft_printf("freeing image %p\n", game->imglist->content);
+		mlx_destroy_image(game->ctx, game->imglist->content);
+		if (game->imglist->next)
+		{
+			game->imglist = game->imglist->next;
+			free(game->imglist->prev);
+			game->imglist->prev = NULL;
+		}
+		else
+		{
+			free(game->imglist);
+			game->imglist = NULL;
+		}
 	}
 }
 
 void	quit_game(t_game *game)
 {
 	// mlx_clear_window(game->ctx, game->win);
-	// mlx_destroy_window(game->ctx, game->win);
 	cleanup_images(game);
-	// free(game->ctx);
-	// free(game);
-	// exit(0);
+	mlx_destroy_window(game->ctx, game->win);
+	free(game->ctx);
+	free(game);
+	exit(0);
 }
 
 int	handle_keypress(int keycode, void *params)
@@ -63,8 +61,8 @@ void	*load_image_file(t_game *game, char *filepath, int *w, int *h)
 
 	img = mlx_xpm_file_to_image(game->ctx, filepath, w, h);
 	ft_lstadd_back(&(game->imglist), ft_lstnew(img));
-	ft_printf("added image %p\n", ft_lstlast(game->imglist));
-	// ft_printf("content %p\n", ft_lstlast(game->imglist->content));
+	ft_printf("%Loaded image %p.%s Assets:\n", GRN, ft_lstlast(game->imglist), RST);
+	ft_lstprint(game->imglist);
 	return (img);
 }
 
@@ -99,7 +97,7 @@ int	main(void)
 	wall = load_image_file(game, "assets/wall-01_x3.xpm", &w, &h);
 	empty = load_image_file(game, "assets/empty-01_x3.xpm", &w, &h);
 	exit = load_image_file(game, "assets/exit-01-x3.xpm", &w, &h);
-	ft_printf("loaded images %p, %p, %p\n", wall, empty, exit);
+	ft_printf("%sloaded images %p, %p, %p%s\n", GRN, wall, empty, exit, RST);
 	for (int x = 0; x < 10; x++)
 	{
 		mlx_put_image_to_window(game->ctx, game->win, wall, w * x, 0);

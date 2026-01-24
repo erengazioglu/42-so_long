@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_lstprint.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/18 03:12:53 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/01/24 14:34:01 by egaziogl         ###   ########.fr       */
+/*   Created: 2026/01/24 14:51:19 by egaziogl          #+#    #+#             */
+/*   Updated: 2026/01/24 14:54:37 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/libft.h"
 
-t_list	*ft_lstnew(void *content)
+void	ft_lstprint(t_list *lst)
 {
-	t_list	*new;
+	t_list *node;
 
-	new = (t_list *) malloc(sizeof(t_list));
-	if (!new)
-		return (NULL);
-	new->content = content;
-	new->next = NULL;
-	new->prev = NULL;
-	return (new);
+	node = lst;
+	if (!node)
+		ft_printf("%sList is empty/null.%s\n", YEL, RST);
+	while (node)
+	{
+		ft_printf("Node: %p || Prev %p, Next %p\n", node, node->prev, node->next);
+		node = node->next;
+	}
 }
