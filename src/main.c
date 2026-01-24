@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 17:50:53 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/01/23 14:42:09 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/01/24 11:26:12 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,29 @@ void	cleanup_images(t_game *game)
 {
 	while (game->imglist)
 	{
-		mlx_destroy_image(game->ctx, game->imglist->content);
-		if (game->imglist->next)
-		{
-			game->imglist = game->imglist->next;
-			free(game->imglist->prev);
-		}
-		else
-		{
-			free(game->imglist);
-			game->imglist = NULL;
-		}
+		ft_printf("freeing image\n");
+		ft_printf("image: %p\n", game->imglist->content);
+		game->imglist = NULL;
+		// mlx_destroy_image(game->ctx, game->imglist->content);
+		// if (game->imglist->next)
+		// {
+		// 	ft_printf("%sthere's more than one\n", GRN);
+		// 	game->imglist = game->imglist->next;
+		// 	free(game->imglist->prev);
+		// }
+		// else
+		// {
+		// 	free(game->imglist);
+		// 	game->imglist = NULL;
+		// }
 	}
 }
 
 void	quit_game(t_game *game)
 {
-	mlx_clear_window(game->ctx, game->win);
-	// cleanup_images(game->ctx);
+	// mlx_clear_window(game->ctx, game->win);
 	// mlx_destroy_window(game->ctx, game->win);
+	cleanup_images(game->ctx);
 	// free(game->ctx);
 	// free(game);
 	// exit(0);
@@ -59,6 +63,7 @@ void	*load_image_file(t_game *game, char *filepath, int *w, int *h)
 
 	img = mlx_xpm_file_to_image(game->ctx, filepath, w, h);
 	ft_lstadd_back(&(game->imglist), ft_lstnew(img));
+	ft_printf("added image %p\n", ft_lstlast(game->imglist));
 	return (img);
 }
 
@@ -84,7 +89,7 @@ int	main(void)
 		10 * GRID_SIZE * GRID_MULT, 
 		"Hello!"
 	);
-	mlx_key_hook(game->win, &handle_keypress, NULL);
+	mlx_key_hook(game->win, &handle_keypress, game);
 	wall = load_image_file(game, "assets/wall-01_x3.xpm", &w, &h);
 	empty = load_image_file(game, "assets/empty-01_x3.xpm", &w, &h);
 	exit = load_image_file(game, "assets/exit-01-x3.xpm", &w, &h);
