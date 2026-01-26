@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 17:50:53 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/01/24 15:10:01 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/01/25 22:16:33 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	cleanup_images(t_game *game)
 {
 	while (game->imglist)
 	{
-		ft_printf("freeing image %p\n", game->imglist->content);
+		// ft_printf("freeing image %p\n", game->imglist->content);
 		mlx_destroy_image(game->ctx, game->imglist->content);
 		if (game->imglist->next)
 		{
@@ -61,12 +61,13 @@ void	*load_image_file(t_game *game, char *filepath, int *w, int *h)
 
 	img = mlx_xpm_file_to_image(game->ctx, filepath, w, h);
 	ft_lstadd_back(&(game->imglist), ft_lstnew(img));
-	ft_printf("%Loaded image %p.%s Assets:\n", GRN, ft_lstlast(game->imglist), RST);
-	ft_lstprint(game->imglist);
+	// ft_printf("%Loaded image %p.%s Assets:\n", GRN, ft_lstlast(game->imglist), RST);
+	// ft_lstprint(game->imglist);
 	return (img);
 }
 
-t_game	*new_game(char *title, int w, int h)
+// t_game	*new_game(char *title, int w, int h)
+t_game	*new_game(char *map)
 {
 	t_game	*game;
 
@@ -76,15 +77,15 @@ t_game	*new_game(char *title, int w, int h)
 	game->ctx = mlx_init();
 	game->win = mlx_new_window(
 		game->ctx,
-		w * GRID_SIZE * GRID_MULT,
-		h * GRID_SIZE * GRID_MULT,
-		title
+		10 * GRID_SIZE * GRID_MULT,
+		10 * GRID_SIZE * GRID_MULT,
+		"So Long!"
 	);
 	game->imglist = NULL;
 	return (game);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_game	*game;
 	void	*wall;
@@ -93,11 +94,17 @@ int	main(void)
 	int		w;
 	int		h;
 
-	game = new_game("Hello", 10, 10);
+	if (argc == 1)
+	{
+		ft_printf("%sYou need to specify at least 1 map file.%s\n", RED, RST);
+		return (1);
+	}
+
+	game = new_game(argv[1]);
 	wall = load_image_file(game, "assets/wall-01_x3.xpm", &w, &h);
 	empty = load_image_file(game, "assets/empty-01_x3.xpm", &w, &h);
 	exit = load_image_file(game, "assets/exit-01-x3.xpm", &w, &h);
-	ft_printf("%sloaded images %p, %p, %p%s\n", GRN, wall, empty, exit, RST);
+	// ft_printf("%sloaded images %p, %p, %p%s\n", GRN, wall, empty, exit, RST);
 	for (int x = 0; x < 10; x++)
 	{
 		mlx_put_image_to_window(game->ctx, game->win, wall, w * x, 0);

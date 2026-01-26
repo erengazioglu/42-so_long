@@ -51,7 +51,10 @@ SRCS_BONUS = \
 	ft_lstprint.c
 SRCS_EXTRA = \
 	ft_itoa_base.c \
-	ft_itoa_uint.c
+	ft_itoa_uint.c \
+	ft_strcpy_lb.c \
+	ft_strfind.c \
+	ft_strnjoin.c
 SRCS_PRINTF = \
 	ft_printf.c \
 	helpers.c \
@@ -65,13 +68,16 @@ SRCS_PRINTF = \
 	printf_ptr.c \
 	printf_str.c \
 	printf_uint.c 
+SRCS_GNL = \
+	get_next_line.c
 
-OBJS := $(SRCS:%.c=obj/base/%.o)
-OBJS_BONUS := $(SRCS_BONUS:%.c=obj/base_bonus/%.o)
-OBJS_EXTRA := $(SRCS_EXTRA:%.c=obj/extra/%.o)
+OBJS 		:= $(SRCS:%.c=obj/base/%.o)
+OBJS_BONUS 	:= $(SRCS_BONUS:%.c=obj/base_bonus/%.o)
+OBJS_EXTRA 	:= $(SRCS_EXTRA:%.c=obj/extra/%.o)
 OBJS_PRINTF := $(SRCS_PRINTF:%.c=obj/ft_printf/%.o)
+OBJS_GNL 	:= $(SRCS_GNL:%.c=obj/get_next_line/%.o)
 
-all: $(NAME) bonus extra printf
+all: $(NAME) bonus extra printf gnl
 
 $(NAME): $(OBJS)
 	ar crs $@ $^
@@ -83,6 +89,9 @@ extra: $(OBJS_EXTRA)
 	ar crs $(NAME) $^
 
 printf: $(OBJS_PRINTF)
+	ar crs $(NAME) $^
+
+gnl: $(OBJS_GNL)
 	ar crs $(NAME) $^
 
 $(OBJS): $(SRCS:%.c=src/base/%.c)
@@ -97,6 +106,9 @@ $(OBJS_EXTRA): $(SRCS_EXTRA:%.c=src/extra/%.c)
 $(OBJS_PRINTF): $(SRCS_PRINTF:%.c=src/ft_printf/%.c)
 	@mkdir -p obj obj/ft_printf
 	$(CC) $(CFLAGS) -c $(@:obj/ft_printf/%.o=src/ft_printf/%.c) -o $@
+$(OBJS_GNL): $(SRCS_GNL:%.c=src/get_next_line/%.c)
+	@mkdir -p obj obj/get_next_line
+	$(CC) $(CFLAGS) -c $(@:obj/get_next_line/%.o=src/get_next_line/%.c) -o $@
 
 fclean: clean
 	rm -f $(NAME)

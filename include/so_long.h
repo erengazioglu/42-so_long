@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 18:50:03 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/01/23 14:31:01 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/01/25 22:30:06 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,10 @@ typedef struct s_game
 	void	*win;
 	t_list	*imglist;
 }	t_game;
+
+typedef struct s_textures
+{
+	void	*
+}	t_textures;
 
 #endif

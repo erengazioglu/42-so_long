@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 00:11:29 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/01/24 14:55:14 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/01/25 23:57:16 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,19 @@ char	*ft_itoa_base(unsigned long n, char *base);
 char	*ft_itoa_uint(unsigned int n);
 int		ft_strfind(char *s, char c);
 char	*ft_strnjoin(char *s1, char *s2, ssize_t n, bool free_s1);
+char	*ft_strcpy_lb(char *dst, char *src, char delim, bool lb);
 
 // Part 5: ft_printf
 
 typedef unsigned int	t_flags;
 int		ft_printf(const char *fstr, ...);
+
+// Part 6: get_next_line
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 64
+# endif
+
+char	*get_next_line(int fd);
 
 #endif
