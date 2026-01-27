@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 18:50:03 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/01/25 22:30:06 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/01/26 11:03:59 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_game
 
 typedef struct s_textures
 {
-	void	*
+	void	*wall;
 }	t_textures;
 
 #endif

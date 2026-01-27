@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 17:50:53 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/01/25 22:16:33 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/01/27 19:05:44 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ void	*load_image_file(t_game *game, char *filepath, int *w, int *h)
 t_game	*new_game(char *map)
 {
 	t_game	*game;
+	int		dims[2];
+	(void) map;
 
 	game = malloc(sizeof(t_game));
 	if (!game)
