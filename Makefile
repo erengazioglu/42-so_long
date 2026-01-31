@@ -12,7 +12,11 @@ ifeq ($(OS),Darwin)
 endif
 
 SRC		= \
-		src/main.c
+		src/main.c \
+		src/parse_map.c \
+		src/draw_map.c \
+		src/init.c \
+		src/console.c
 
 all		: test
 test	: src/main.c libft/libft.a

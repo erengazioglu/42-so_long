@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 18:50:03 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/01/26 11:03:59 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/01/31 02:01:54 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 # define SO_LONG_H
 
 # include <stdlib.h>
+# include <fcntl.h>
 # include "../libft/include/libft.h"
+# include "../minilibx-linux/mlx.h"
 
 # define MLX_WHITE	0x00FFFFFF
 # define GRID_SIZE	16
@@ -22,16 +24,36 @@
 #  define GRID_MULT	3
 # endif
 
-typedef struct s_game
+typedef struct s_anim
 {
-	void	*ctx;
-	void	*win;
-	t_list	*imglist;
-}	t_game;
+	int		frames;
+	void	*textures;
+}	t_anim;
 
 typedef struct s_textures
 {
+	void	*empty;
 	void	*wall;
+	void	*exit;
+	t_anim	*player;
+	t_anim	*coin;
+	t_anim	*bat;
+	t_anim	*slime;
 }	t_textures;
+
+
+typedef struct s_game
+{
+	void		*ctx;
+	void		*win;
+	t_textures	*textures;
+	char		**map;
+	int			map_size[2];
+}	t_game;
+
+bool	parse_map(char *fp, t_game *game);
+t_game	*new_game(char *map);
+void	print_map(t_game *game);
+void	draw_map(t_game *game);
 
 #endif
