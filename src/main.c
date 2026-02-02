@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 17:50:53 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/01/31 02:02:07 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/02 03:04:36 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	main(int argc, char **argv)
 	// 	mlx_put_image_to_window(game->ctx, game->win, empty, w * x, w * y);
 	// }
 	// mlx_put_image_to_window(game->ctx, game->win, exit, w * 8, w);
-	
+	print_objs(game);
 	mlx_key_hook(game->win, &handle_keypress, game);
 	return (mlx_loop(game->ctx));
 }

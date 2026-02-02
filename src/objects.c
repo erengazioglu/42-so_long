@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 02:14:34 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/02 02:44:15 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/02 03:02:00 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ t_obj	*create_obj(t_game *game, char type, int pos[2])
 	new_obj->type = type;
 	new_obj->pos[0] = pos[0];
 	new_obj->pos[1] = pos[1];
-	ft_lstadd_back(&(game->objs), ft_lstnew(new_obj));
+	if (type == 'P')
+		game->player = new_obj;
+	else
+		ft_lstadd_back(&(game->objs), ft_lstnew(new_obj));
 	return (new_obj);
 }
