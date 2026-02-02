@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 19:58:19 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/01/31 02:03:50 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/01/31 11:21:24 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	draw_cell(t_game *game, int x, int y)
 	else if (game->map[y][x] == 'E')
 		mlx_put_image_to_window(
 			game->ctx, game->win, game->textures->exit, px, py);
-	else
+	else if (game->map[y][x] == '0')
 		mlx_put_image_to_window(
 			game->ctx, game->win, game->textures->empty, px, py);
 }

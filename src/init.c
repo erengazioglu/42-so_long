@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 00:55:41 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/01/31 01:47:37 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/02 02:35:00 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ t_game	*new_game(char *mapfile)
 	game = malloc(sizeof(t_game));
 	if (!game)
 		return (NULL);
+	game->objs = NULL;
 	parse_map(mapfile, game);
 	game->ctx = mlx_init();
 	game->win = mlx_new_window(

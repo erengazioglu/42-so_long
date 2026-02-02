@@ -16,7 +16,8 @@ SRC		= \
 		src/parse_map.c \
 		src/draw_map.c \
 		src/init.c \
-		src/console.c
+		src/console.c \
+		src/objects.c
 
 all		: test
 test	: src/main.c libft/libft.a

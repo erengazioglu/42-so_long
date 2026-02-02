@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 19:05:00 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/01/31 01:44:54 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/02 02:45:11 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,31 @@ bool	get_map_dims(char *fp, t_game *game)
 	return (true);
 }
 
+char	*parse_row(char *row, t_game *game, int y)
+{
+	char	*ptr;
+	int		pos[2];
+
+	ptr = row;
+	pos[0] = 0;
+	pos[1] = y;
+	while (*ptr)
+	{
+		if (ft_strchr("ECP", *ptr))
+		{
+			create_obj(game, *ptr, pos);
+			pos[0]++;
+			*ptr = '0';
+		}
+		ptr++;
+	}
+	return (row);
+}
+
 bool	copy_map(char *fp, t_game *game)
 {
 	int		fd;
+	int		y;
 	char	*line;
 	char	**map_ptr;
 
@@ -54,9 +76,11 @@ bool	copy_map(char *fp, t_game *game)
 	line = get_next_line(fd);
 	if (!line)
 		return (false);
+	y = 0;
 	while (line)
 	{
-		*map_ptr = line;
+		*map_ptr = parse_row(line, game, y++);
+		// *map_ptr = line;
 		map_ptr++;
 		line = get_next_line(fd);
 	}
@@ -71,7 +95,7 @@ bool	parse_map(char *fp, t_game *game)
 		return (false);
 	copy_map(fp, game);
 	ft_printf(
-		"%s %s | w: %d, h: %d%s\n", 
+		"%s%s | w: %d, h: %d%s\n", 
 		YEL, fp, game->map_size[0], game->map_size[1], RST
 	);
 	return (false);

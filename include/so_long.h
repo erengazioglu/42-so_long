@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 18:50:03 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/01/31 02:01:54 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/02 02:31:37 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,18 @@
 # ifndef GRID_MULT
 #  define GRID_MULT	3
 # endif
+
+// typedef enum
+// {
+// 	PLAYER,
+// 	COIN,
+// 	WEAPON,
+// 	GUARD,
+// 	PATROL_E,
+// 	PATROL_S,
+// 	PATROL_W,
+// 	PATROL_N
+// }	e_type;
 
 typedef struct s_anim
 {
@@ -41,19 +53,27 @@ typedef struct s_textures
 	t_anim	*slime;
 }	t_textures;
 
-
 typedef struct s_game
 {
 	void		*ctx;
 	void		*win;
-	t_textures	*textures;
 	char		**map;
 	int			map_size[2];
+	t_textures	*textures;
+	t_list		*objs;
 }	t_game;
+
+typedef struct s_obj
+{
+	int		pos[2];
+	int		frame;
+	char	type;
+}	t_obj;
 
 bool	parse_map(char *fp, t_game *game);
 t_game	*new_game(char *map);
 void	print_map(t_game *game);
 void	draw_map(t_game *game);
+t_obj	*create_obj(t_game *game, char type, int pos[2]);
 
 #endif
