@@ -6,18 +6,18 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 02:14:34 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/02 16:04:21 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/02 20:08:51 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void	draw_obj(t_game *game, t_obj *obj)
-{
-	// mlx_put_image_to_window(
-	// 	game->ctx, 
-	// )
-}
+// void	draw_obj(t_game *game, t_obj *obj)
+// {
+// 	// mlx_put_image_to_window(
+// 	// 	game->ctx, 
+// 	// )
+// }
 
 t_obj	*create_obj(t_game *game, char type, int pos[2])
 {
