@@ -6,13 +6,13 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 19:58:19 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/01/31 11:21:24 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/02 15:50:41 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void	draw_cell(t_game *game, int x, int y)
+void	draw_map_cell(t_game *game, int x, int y)
 {
 	int	px;
 	int py;
@@ -36,7 +36,7 @@ void	draw_row(t_game *game, int y)
 
 	x = 0;
 	while (x < game->map_size[0])
-		draw_cell(game, x++, y);
+		draw_map_cell(game, x++, y);
 }
 
 void	draw_map(t_game *game)

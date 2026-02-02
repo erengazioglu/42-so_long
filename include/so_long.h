@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 18:50:03 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/02 03:05:55 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/02 15:55:16 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@
 
 typedef struct s_anim
 {
-	int		frames;
-	void	*textures;
+	int		length;
+	t_list	*textures;
 }	t_anim;
 
 typedef struct s_textures
@@ -68,6 +68,7 @@ typedef struct s_game
 	int			map_size[2];
 	t_textures	*textures;
 	t_obj		*player;
+	t_obj		*exit;
 	t_list		*objs;
 }	t_game;
 

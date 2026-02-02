@@ -6,13 +6,12 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 00:55:41 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/02 02:35:00 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/02 16:06:04 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-// returns null if bad things happen
 t_game	*check_textures(t_game *game)
 {
 	if (
@@ -24,7 +23,6 @@ t_game	*check_textures(t_game *game)
 	return (NULL);
 }
 
-// returns null if bad things happen
 t_game	*init_textures(t_game *game)
 {
 	int	w;
@@ -32,29 +30,29 @@ t_game	*init_textures(t_game *game)
 
 	game->textures = malloc(sizeof(t_textures));
 	if (!game->textures)
-		return (false);
+		return (NULL);
 	game->textures->empty = mlx_xpm_file_to_image(
-		game->ctx, "assets/empty-01_x3.xpm", &w, &h
+		game->ctx, "assets/empty1x3.xpm", &w, &h
 	);
 	game->textures->wall = mlx_xpm_file_to_image(
-		game->ctx, "assets/wall-01_x3.xpm", &w, &h
+		game->ctx, "assets/wall1x3x3.xpm", &w, &h
 	);
 	game->textures->exit = mlx_xpm_file_to_image(
-		game->ctx, "assets/exit-01-x3.xpm", &w, &h
+		game->ctx, "assets/exit1x3-x3.xpm", &w, &h
 	);
 	return (check_textures(game));
 }
 
-void	*load_image_file(t_game *game, char *filepath, int *w, int *h)
-{
-	void	*img;
+// void	*load_image_file(t_game *game, char *filepath, int *w, int *h)
+// {
+// 	void	*img;
 
-	img = mlx_xpm_file_to_image(game->ctx, filepath, w, h);
-	// ft_lstadd_back(&(game->imglist), ft_lstnew(img));
-	// ft_printf("%Loaded image %p.%s Assets:\n", GRN, ft_lstlast(game->imglist), RST);
-	// ft_lstprint(game->imglist);
-	return (img);
-}
+// 	img = mlx_xpm_file_to_image(game->ctx, filepath, w, h);
+// 	ft_lstadd_back(&(game->imglist), ft_lstnew(img));
+// 	ft_printf("%Loaded image %p.%s Assets:\n", GRN, ft_lstlast(game->imglist), RST);
+// 	ft_lstprint(game->imglist);
+// 	return (img);
+// }
 
 t_game	*new_game(char *mapfile)
 {

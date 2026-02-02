@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 00:40:24 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/02 03:06:26 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/02 15:47:07 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,19 @@ void	print_objs(t_game *game)
 	t_list	*objs;
 	t_obj	*curr;
 
+	ft_printf("Player: (%d, %d)\n", game->player->pos[0], game->player->pos[1]);
+	ft_printf("Exit: (%d, %d)\n", game->exit->pos[0], game->exit->pos[1]);
 	objs = game->objs;
 	while (objs->next)
 	{
 		curr = (t_obj *) objs->content;
 		ft_printf(
-			"Type %c: (%d, %d)\n", curr->type, curr->pos[0], curr->pos[1]
+			"Object [%c]: (%d, %d)\n", curr->type, curr->pos[0], curr->pos[1]
 		);
 		objs = objs->next;
 	}
+	curr = (t_obj *) objs->content;
+	ft_printf(
+		"Object [%c]: (%d, %d)\n", curr->type, curr->pos[0], curr->pos[1]
+	);
 }

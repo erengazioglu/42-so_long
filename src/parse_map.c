@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 19:05:00 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/02 02:45:11 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/02 14:12:07 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ char	*parse_row(char *row, t_game *game, int y)
 		if (ft_strchr("ECP", *ptr))
 		{
 			create_obj(game, *ptr, pos);
-			pos[0]++;
 			*ptr = '0';
 		}
+		pos[0] += 1;
 		ptr++;
 	}
 	return (row);
