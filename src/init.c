@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 00:55:41 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/02 23:39:53 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/03 14:10:02 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,12 @@ t_game	*init_textures(t_game *game)
 // 	return (img);
 // }
 
+t_game	*init_animations(t_game *game)
+{
+	create_anim(game, "player", 8);
+	return (game);
+}
+
 t_game	*new_game(char *mapfile)
 {
 	t_game	*game;
@@ -68,6 +74,7 @@ t_game	*new_game(char *mapfile)
 		mapfile
 	);
 	init_textures(game);
+	init_animations(game);
 	print_map(game);
 	return (game);
 }

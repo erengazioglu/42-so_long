@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 18:50:03 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/02 20:31:35 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/03 14:08:57 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,7 @@ void	print_map(t_game *game);
 void	print_objs(t_game *game);
 void	draw_map(t_game *game);
 t_obj	*create_obj(t_game *game, char type, int pos[2]);
+t_anim	*create_anim(t_game *game, char *name, int frames);
+
 
 #endif

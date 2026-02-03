@@ -54,7 +54,8 @@ SRCS_EXTRA = \
 	ft_itoa_uint.c \
 	ft_strcpy_lb.c \
 	ft_strfind.c \
-	ft_strnjoin.c
+	ft_strnjoin.c \
+	ft_strcat.c
 SRCS_PRINTF = \
 	ft_printf.c \
 	helpers.c \
