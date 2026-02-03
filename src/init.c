@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 00:55:41 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/02 20:16:20 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/02 23:39:53 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,6 @@ t_game	*init_textures(t_game *game)
 	);
 	game->textures->wall = mlx_xpm_file_to_image(
 		game->ctx, "assets/wall2x3-00.xpm", &w, &h
-	);
-	game->textures->exit = mlx_xpm_file_to_image(
-		game->ctx, "assets/exit1x3.xpm", &w, &h
 	);
 	return (check_textures(game));
 }
