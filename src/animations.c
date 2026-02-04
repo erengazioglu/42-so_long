@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 15:48:40 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/03 14:11:42 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/04 00:59:08 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,20 @@ t_anim	*create_anim(t_game *game, char *name, int frames)
 {
 	t_anim	*anim;
 	char	*fp;
+	int		w;
+	int		h;
 	// int		i;
 	
+	w = 0;
+	h = 0;
 	game = (void *) game;
 	anim = malloc(sizeof(anim));
+	anim->textures = NULL;
 	for (int i = 0; i < frames; i++)
 	{
 		fp = build_anim_fp(name, i);
 		ft_printf("%sAnim filepath: %s%s\n", YEL, fp, RST);
+		ft_lstadd_back(&(anim->textures), mlx_xpm_file_to_image(game->ctx, fp, &w, &h));
 		free(fp);
 	}
 	return (anim);
