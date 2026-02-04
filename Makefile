@@ -14,7 +14,8 @@ endif
 SRC		= \
 		src/main.c \
 		src/parse_map.c \
-		src/draw_map.c \
+		src/render_map.c \
+		src/render_objs.c \
 		src/init.c \
 		src/console.c \
 		src/objects.c \

@@ -48,7 +48,8 @@ SRCS_BONUS = \
 	ft_lstnew.c \
 	ft_lstsize.c \
 	ft_lstdestroy.c \
-	ft_lstprint.c
+	ft_lstprint.c \
+	ft_lstget.c
 SRCS_EXTRA = \
 	ft_itoa_base.c \
 	ft_itoa_uint.c \

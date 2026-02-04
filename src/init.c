@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 00:55:41 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/03 14:10:02 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/04 20:40:38 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,23 +37,18 @@ t_game	*init_textures(t_game *game)
 	game->textures->wall = mlx_xpm_file_to_image(
 		game->ctx, "assets/wall2x3-00.xpm", &w, &h
 	);
+	game->textures->exit = mlx_xpm_file_to_image(
+		game->ctx, "assets/exit1x3.xpm", &w, &h
+	);
 	return (check_textures(game));
 }
 
-// void	*load_image_file(t_game *game, char *filepath, int *w, int *h)
-// {
-// 	void	*img;
-
-// 	img = mlx_xpm_file_to_image(game->ctx, filepath, w, h);
-// 	ft_lstadd_back(&(game->imglist), ft_lstnew(img));
-// 	ft_printf("%Loaded image %p.%s Assets:\n", GRN, ft_lstlast(game->imglist), RST);
-// 	ft_lstprint(game->imglist);
-// 	return (img);
-// }
-
 t_game	*init_animations(t_game *game)
 {
-	create_anim(game, "player", 8);
+	game->textures->player = create_anim(game, "player1", 8);
+	game->textures->coin = create_anim(game, "coin1", 8);
+	game->textures->slime = create_anim(game, "enemy1", 8);
+	game->textures->bat = create_anim(game, "enemy2", 8);
 	return (game);
 }
 
@@ -64,17 +59,17 @@ t_game	*new_game(char *mapfile)
 	game = malloc(sizeof(t_game));
 	if (!game)
 		return (NULL);
-	game->objs = NULL;
-	parse_map(mapfile, game);
 	game->ctx = mlx_init();
+	game->objs = NULL;
+	init_textures(game);
+	init_animations(game);
+	parse_map(mapfile, game);
+	print_map(game);
 	game->win = mlx_new_window(
 		game->ctx,
 		game->map_size[0] * GRID_SIZE * GRID_MULT,
 		game->map_size[1] * GRID_SIZE * GRID_MULT,
 		mapfile
 	);
-	init_textures(game);
-	init_animations(game);
-	print_map(game);
 	return (game);
 }

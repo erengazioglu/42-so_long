@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 17:50:53 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/02 16:04:05 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/04 20:02:26 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ int	handle_keypress(int keycode, void *params)
 	if (keycode == 65307)
 		quit_game(game);
 	else
-		ft_printf("Key pressed: %d\n", keycode);
+	{
+		ft_printf("Key pressed: %d. Redrawing.\n", keycode);
+		render_objs(game);
+	}
 	return (0);
 }
 
@@ -45,7 +48,7 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	game = new_game(argv[1]);
-	draw_map(game);
+	render_map(game);
 	print_objs(game);
 	mlx_key_hook(game->win, &handle_keypress, game);
 	return (mlx_loop(game->ctx));

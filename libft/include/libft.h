@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 00:11:29 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/03 14:02:15 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/04 19:55:35 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstdestroy(t_list *lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+void	*ft_lstget(t_list *list, unsigned int idx);
 
 // Part 4: Extras
 

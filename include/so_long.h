@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 18:50:03 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/03 14:08:57 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/04 20:26:12 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ typedef struct s_textures
 	void	*exit;
 	t_anim	*player;
 	t_anim	*coin;
-	t_anim	*bat;
 	t_anim	*slime;
+	t_anim	*bat;
 }	t_textures;
 
 typedef struct s_obj
@@ -58,6 +58,7 @@ typedef struct s_obj
 	int		pos[2];
 	int		frame;
 	char	type;
+	t_anim	*anim;
 }	t_obj;
 
 typedef struct s_game
@@ -76,7 +77,8 @@ bool	parse_map(char *fp, t_game *game);
 t_game	*new_game(char *map);
 void	print_map(t_game *game);
 void	print_objs(t_game *game);
-void	draw_map(t_game *game);
+void	render_map(t_game *game);
+void	render_objs(t_game *game);
 t_obj	*create_obj(t_game *game, char type, int pos[2]);
 t_anim	*create_anim(t_game *game, char *name, int frames);
 

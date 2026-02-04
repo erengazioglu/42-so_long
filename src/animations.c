@@ -6,25 +6,22 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 15:48:40 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/04 19:34:27 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/04 19:41:19 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-int	check_file_frames(char *src);
-
-// example: "assets/player1x3-00.xpm"
 static char	*build_anim_fp(char *name, int frame)
 {
 	char	*fp;
 
-	fp = ft_calloc(ft_strlen("assets/1x3-00.xpm") + ft_strlen(name) + 1, 1);
+	fp = ft_calloc(ft_strlen("assets/x3-00.xpm") + ft_strlen(name) + 1, 1);
 	if (!fp)
 		return (NULL);
 	ft_strcat(fp, "assets/");
 	ft_strcat(fp, name);
-	ft_strcat(fp, "1x3-");
+	ft_strcat(fp, "x3-");
 	if (frame < 10)
 		ft_strcat(fp, "0");
 	ft_strcat(fp, ft_itoa(frame));
@@ -44,6 +41,7 @@ t_anim	*create_anim(t_game *game, char *name, int frames)
 	h = 0;
 	game = (void *) game;
 	anim = malloc(sizeof(t_anim));
+	anim->length = frames;
 	anim->textures = NULL;
 	for (int i = 0; i < frames; i++)
 	{
@@ -53,10 +51,4 @@ t_anim	*create_anim(t_game *game, char *name, int frames)
 		free(fp);
 	}
 	return (anim);
-	// i = 0;
-	
-	// while (i < frames)
-	// {
-	// 	load_te
-	// }
 }
