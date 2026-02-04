@@ -6,14 +6,12 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 17:50:53 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/04 23:28:43 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/05 00:41:29 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minilibx-linux/mlx.h"
 #include "../include/so_long.h"
-
-
 
 void	quit_game(t_game *game)
 {
@@ -43,18 +41,16 @@ int	process(void *param)
 int	handle_keypress(int keycode, void *param)
 {
 	t_game	*game;
-	long	time;
+	e_key	key;
 	
-	time = current_time_ms();
 	game = (t_game *) param;
-	if (keycode == 65307)
+	key = get_key_input(keycode);
+	if (key == QUIT)
 		quit_game(game);
+	else if (key != NOKEY)
+		ft_printf("Key pressed: %d.\n", key);
 	else
-	{
-		ft_printf("Key pressed: %d. Redrawing.\n", keycode);
-		ft_printf("Time passed since start: %d\n", (int) (time - game->last_update));
-		render_objs(game);
-	}
+		move_player(key);
 	return (0);
 }
 

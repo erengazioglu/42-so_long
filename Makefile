@@ -20,7 +20,8 @@ SRC		= \
 		src/console.c \
 		src/objects.c \
 		src/animations.c \
-		src/time.c
+		src/time.c \
+		src/util.c
 
 all		: test
 test	: src/main.c libft/libft.a

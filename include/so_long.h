@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 18:50:03 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/04 23:16:46 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/05 00:39:52 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,15 @@
 #  define GRID_MULT	3
 # endif
 
-// typedef enum
-// {
-// 	PLAYER,
-// 	COIN,
-// 	WEAPON,
-// 	GUARD,
-// 	PATROL_E,
-// 	PATROL_S,
-// 	PATROL_W,
-// 	PATROL_N
-// }	e_type;
+typedef enum
+{
+	NOKEY,
+	QUIT,
+	E,
+	S,
+	W,
+	N
+}	e_key;
 
 typedef struct s_anim
 {
@@ -84,6 +82,7 @@ void	render_objs(t_game *game);
 t_obj	*create_obj(t_game *game, char type, int pos[2]);
 t_anim	*create_anim(t_game *game, char *name, int frames);
 long	current_time_ms(void);
+e_key	get_key_input(int keycode);
 
 
 #endif
