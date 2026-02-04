@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 18:50:03 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/04 20:26:12 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/04 23:16:46 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <fcntl.h>
+# include <sys/time.h>
 # include "../libft/include/libft.h"
 # include "../minilibx-linux/mlx.h"
 
@@ -67,6 +68,7 @@ typedef struct s_game
 	void		*win;
 	char		**map;
 	int			map_size[2];
+	int			last_update;
 	t_textures	*textures;
 	t_obj		*player;
 	t_obj		*exit;
@@ -81,6 +83,7 @@ void	render_map(t_game *game);
 void	render_objs(t_game *game);
 t_obj	*create_obj(t_game *game, char type, int pos[2]);
 t_anim	*create_anim(t_game *game, char *name, int frames);
+long	current_time_ms(void);
 
 
 #endif

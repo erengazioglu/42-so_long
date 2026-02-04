@@ -6,13 +6,11 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 19:42:51 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/04 21:03:57 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/04 22:51:18 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-
-// game->textures->player->length
 
 void	render_obj(t_game *game, t_obj *obj)
 {

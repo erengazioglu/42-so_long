@@ -6,12 +6,14 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 17:50:53 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/04 20:02:26 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/04 23:28:43 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minilibx-linux/mlx.h"
 #include "../include/so_long.h"
+
+
 
 void	quit_game(t_game *game)
 {
@@ -23,16 +25,34 @@ void	quit_game(t_game *game)
 	exit(0);
 }
 
-int	handle_keypress(int keycode, void *params)
+int	process(void *param)
 {
 	t_game	*game;
+	long	time;
+
+	game = (t_game *) param;
+	time = current_time_ms();
+	if ((int) time - game->last_update > 100)
+	{
+		game->last_update = time;
+		render_objs(game);
+	}
+	return (0);
+}
+
+int	handle_keypress(int keycode, void *param)
+{
+	t_game	*game;
+	long	time;
 	
-	game = (t_game *) params;
+	time = current_time_ms();
+	game = (t_game *) param;
 	if (keycode == 65307)
 		quit_game(game);
 	else
 	{
 		ft_printf("Key pressed: %d. Redrawing.\n", keycode);
+		ft_printf("Time passed since start: %d\n", (int) (time - game->last_update));
 		render_objs(game);
 	}
 	return (0);
@@ -51,5 +71,6 @@ int	main(int argc, char **argv)
 	render_map(game);
 	print_objs(game);
 	mlx_key_hook(game->win, &handle_keypress, game);
+	mlx_loop_hook(game->ctx, &process, game);
 	return (mlx_loop(game->ctx));
 }
