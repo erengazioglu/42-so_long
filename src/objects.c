@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 02:14:34 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/05 10:45:18 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/05 17:42:57 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,10 @@ void	destroy_obj(t_game *game, t_obj *obj)
 	t_list	*node;
 
 	node = ft_lstfind(game->objs, obj);
-	ft_printf("size before deleting obj: %d\n", ft_lstsize(game->objs));
 	if (node)
 	{
 		render_cell(game, obj->pos[0], obj->pos[1]);
 		ft_lstremove(&(game->objs), node, &delete_content);
-		ft_printf("size after deleting obj: %d\n", ft_lstsize(game->objs));
 	}
 }
 
@@ -57,6 +55,8 @@ void	set_obj_anim(t_game *game, t_obj *obj, char type)
 		obj->anim = game->textures->slime;
 	else if (ft_strchr("^>v<", type))
 		obj->anim = game->textures->bat;
+	else if (type == 'W')
+		obj->anim = game->textures->key;
 }
 
 t_obj	*create_obj(t_game *game, char type, int pos[2])

@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 18:50:03 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/05 10:52:38 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/05 17:30:13 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@
 # ifndef GRID_MULT
 #  define GRID_MULT	3
 # endif
+
+// key, button, notify
+# define KEY_PRESS	2
+# define BTN_EXIT	17
+# define NOT_MAP	19
 
 typedef enum
 {
@@ -50,6 +55,7 @@ typedef struct s_textures
 	t_anim	*coin;
 	t_anim	*slime;
 	t_anim	*bat;
+	t_anim	*key;
 }	t_textures;
 
 typedef struct s_obj
@@ -77,6 +83,7 @@ typedef struct s_game
 
 bool	parse_map(char *fp, t_game *game);
 t_game	*new_game(char *map);
+void	quit_game(t_game *game);
 void	print_map(t_game *game);
 void	print_objs(t_game *game);
 void	render_cell(t_game *game, int x, int y);
@@ -89,7 +96,8 @@ long	current_time_ms(void);
 e_key	get_key_input(int keycode);
 void	player_action(t_game *game, e_key key);
 void	get_move_dir(e_key key, int *dir);
-char	get_map_tile(t_game *game, int *pos);
+void	get_patrol_dir(char type, int *dir);
+char	get_tile(t_game *game, int x, int y);
 t_obj	*get_obj(t_game *game, int pos[2]);
 void	destroy_obj(t_game *game, t_obj *obj);
 
