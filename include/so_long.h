@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 18:50:03 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/05 18:08:37 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/05 23:13:19 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_textures
 	void	*wall;
 	void	*exit;
 	t_anim	*player;
+	t_anim	*player_weapon;
 	t_anim	*coin;
 	t_anim	*slime;
 	t_anim	*bat;
@@ -77,6 +78,8 @@ typedef struct s_game
 	int			last_update;
 	int			moves;
 	int			score;
+	bool		weapon;
+	int			keys;
 	t_textures	*textures;
 	t_obj		*player;
 	t_obj		*exit;

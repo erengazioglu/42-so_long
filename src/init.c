@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 00:55:41 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/05 18:08:22 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/05 23:13:06 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ t_game	*init_textures(t_game *game)
 t_game	*init_animations(t_game *game)
 {
 	game->textures->player = create_anim(game, "player1", 8);
+	game->textures->player_weapon = create_anim(game, "player2", 8);
 	game->textures->coin = create_anim(game, "coin1", 8);
 	game->textures->slime = create_anim(game, "enemy1", 8);
 	game->textures->bat = create_anim(game, "enemy2", 8);
@@ -61,6 +62,8 @@ t_game	*init_game(t_game *game)
 	game->objs = NULL;
 	game->moves = 0;
 	game->score = 0;
+	game->keys = 0;
+	game->weapon = false;
 	init_textures(game);
 	init_animations(game);
 	return (game);

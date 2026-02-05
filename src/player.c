@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 00:42:29 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/05 17:52:07 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/05 23:22:22 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,21 @@ void	move_player(t_game *game, int *dir)
 
 void	interact(t_game *game, t_obj *obj, int dir[2])
 {
-	if (obj->type == 'C')
+	if (ft_strchr("CWK", obj->type))
 	{
-		game->score += 1;
 		destroy_obj(game, obj);
 		move_player(game, dir);
+		if (obj->type == 'C')
+			game->score += 1;
+		else if (obj->type == 'W')
+			game->player->anim = game->textures->player_weapon;
+		else
+			game->keys += 1;
+	}
+	else if (obj->type == 'L' && game->keys)
+	{
+		destroy_obj(game, obj);
+		game->keys -= 1;
 	}
 }
 
