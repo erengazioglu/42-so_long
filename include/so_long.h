@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 18:50:03 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/05 00:39:52 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/05 01:33:24 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ typedef enum
 {
 	NOKEY,
 	QUIT,
-	E,
-	S,
-	W,
-	N
+	E, 		// 2
+	S, 		// 3
+	W, 		// 4
+	N		// 5
 }	e_key;
 
 typedef struct s_anim
@@ -77,12 +77,18 @@ bool	parse_map(char *fp, t_game *game);
 t_game	*new_game(char *map);
 void	print_map(t_game *game);
 void	print_objs(t_game *game);
+void	render_cell(t_game *game, int x, int y);
 void	render_map(t_game *game);
+void	render_obj(t_game *game, t_obj *obj, bool advance_frame);
 void	render_objs(t_game *game);
 t_obj	*create_obj(t_game *game, char type, int pos[2]);
 t_anim	*create_anim(t_game *game, char *name, int frames);
 long	current_time_ms(void);
 e_key	get_key_input(int keycode);
+void	move_player(t_game *game, e_key key);
+void	get_move_dir(e_key key, int *dir);
+char	get_map_tile(t_game *game, int *pos);
+
 
 
 #endif

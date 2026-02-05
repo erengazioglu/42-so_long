@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 17:50:53 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/05 00:41:29 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/05 01:08:41 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ int	handle_keypress(int keycode, void *param)
 	if (key == QUIT)
 		quit_game(game);
 	else if (key != NOKEY)
-		ft_printf("Key pressed: %d.\n", key);
+		move_player(game, key);
 	else
-		move_player(key);
+		ft_printf("Key pressed: %d.\n", key);
 	return (0);
 }
 

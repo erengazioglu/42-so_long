@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 19:05:00 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/02 20:30:54 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/05 01:06:24 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ bool	copy_map(char *fp, t_game *game)
 	}
 	return (true);
 }
-
 
 bool	parse_map(char *fp, t_game *game)
 {
