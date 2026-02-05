@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 00:42:29 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/05 17:44:58 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/05 17:52:07 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	move_patrol(t_game *game, t_obj *obj, int *dir)
 		obj->pos[1] += dir[1];
 		render_obj(game, obj, false);
 	}
-	if (game->player->pos[0] == dir[0] && game->player->pos[1] == dir[1])
+	if (game->player->pos[0] == obj->pos[0]
+		&& game->player->pos[1] == obj->pos[1])
 	{
 		ft_printf("%sA dead player is you!%s\n", RED, RST);
 	}
@@ -49,7 +50,7 @@ void	move_objects(t_game *game)
 			get_patrol_dir(obj->type, dir);
 			if (get_tile(game, obj->pos[0] + dir[0], obj->pos[1] + dir[1]) == '1')
 			{
-				ft_printf("Char: %c\n", ">v<^"[2]);
+				obj->type = ">v<^"[(ft_strfind(">v<^", obj->type) + 2) % 4];
 				dir[0] *= -1;
 				dir[1] *= -1;
 			}
