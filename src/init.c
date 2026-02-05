@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 00:55:41 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/05 17:29:56 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/05 17:57:28 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_game	*init_animations(t_game *game)
 	game->textures->coin = create_anim(game, "coin1", 8);
 	game->textures->slime = create_anim(game, "enemy1", 8);
 	game->textures->bat = create_anim(game, "enemy2", 8);
-	game->textures->key = create_anim(game, "key1", 1);
+	game->textures->key = create_anim(game, "weapon1", 1);
 	return (game);
 }
 
