@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 00:55:41 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/04 20:40:38 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/05 02:24:29 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,17 @@ t_game	*init_animations(t_game *game)
 	return (game);
 }
 
+t_game	*init_game(t_game *game)
+{
+	game->ctx = mlx_init();
+	game->objs = NULL;
+	game->moves = 0;
+	game->score = 0;
+	init_textures(game);
+	init_animations(game);
+	return (game);
+}
+
 t_game	*new_game(char *mapfile)
 {
 	t_game	*game;
@@ -59,10 +70,7 @@ t_game	*new_game(char *mapfile)
 	game = malloc(sizeof(t_game));
 	if (!game)
 		return (NULL);
-	game->ctx = mlx_init();
-	game->objs = NULL;
-	init_textures(game);
-	init_animations(game);
+	init_game(game);
 	parse_map(mapfile, game);
 	print_map(game);
 	game->win = mlx_new_window(

@@ -6,11 +6,46 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 02:14:34 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/04 20:39:35 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/05 10:45:18 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+void	delete_content(void *content)
+{
+	free(content);
+}
+
+void	destroy_obj(t_game *game, t_obj *obj)
+{
+	t_list	*node;
+
+	node = ft_lstfind(game->objs, obj);
+	ft_printf("size before deleting obj: %d\n", ft_lstsize(game->objs));
+	if (node)
+	{
+		render_cell(game, obj->pos[0], obj->pos[1]);
+		ft_lstremove(&(game->objs), node, &delete_content);
+		ft_printf("size after deleting obj: %d\n", ft_lstsize(game->objs));
+	}
+}
+
+t_obj	*get_obj(t_game *game, int pos[2])
+{
+	t_list	*list;
+	t_obj	*obj;
+
+	list = game->objs;
+	while (list)
+	{
+		obj = (t_obj *) list->content;
+		if (obj->pos[0] == pos[0] && obj->pos[1] == pos[1])
+			return (obj);
+		list = list->next;
+	}
+	return (NULL);
+}
 
 void	set_obj_anim(t_game *game, t_obj *obj, char type)
 {

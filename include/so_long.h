@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 18:50:03 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/05 01:33:24 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/05 02:24:01 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ typedef struct s_game
 	char		**map;
 	int			map_size[2];
 	int			last_update;
+	int			moves;
+	int			score;
 	t_textures	*textures;
 	t_obj		*player;
 	t_obj		*exit;
@@ -88,7 +90,8 @@ e_key	get_key_input(int keycode);
 void	move_player(t_game *game, e_key key);
 void	get_move_dir(e_key key, int *dir);
 char	get_map_tile(t_game *game, int *pos);
-
+t_obj	*get_obj(t_game *game, int pos[2]);
+void	destroy_obj(t_game *game, t_obj *obj);
 
 
 #endif
