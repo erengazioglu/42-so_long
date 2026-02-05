@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 00:55:41 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/05 23:13:06 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/06 00:06:33 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ t_game	*init_game(t_game *game)
 	game->score = 0;
 	game->keys = 0;
 	game->weapon = false;
+	game->dead = false;
 	init_textures(game);
 	init_animations(game);
 	return (game);

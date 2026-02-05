@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 02:14:34 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/05 18:07:58 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/06 00:07:50 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,6 @@ t_obj	*create_obj(t_game *game, char type, int pos[2])
 	set_obj_anim(game, new_obj, type);
 	if (type == 'P')
 		game->player = new_obj;
-	else if (type == 'E')
-		game->exit = new_obj;
 	else
 		ft_lstadd_back(&(game->objs), ft_lstnew(new_obj));
 	return (new_obj);

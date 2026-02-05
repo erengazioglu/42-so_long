@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 19:42:51 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/05 23:44:55 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/06 00:16:30 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ void	render_objs(t_game *game)
 {
 	t_list	*obj;
 	
-	render_obj(game, game->player, true);
+	if (!game->dead)
+		render_obj(game, game->player, true);
 	obj = game->objs;
 	while (obj)
 	{

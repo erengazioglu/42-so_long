@@ -22,7 +22,8 @@ SRC		= \
 		src/animations.c \
 		src/time.c \
 		src/util.c \
-		src/player.c
+		src/player.c \
+		src/move.c
 
 all		: test
 test	: src/main.c libft/libft.a

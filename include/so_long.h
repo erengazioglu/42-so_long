@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 18:50:03 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/05 23:13:19 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/06 00:12:47 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,11 @@ typedef struct s_game
 	int			last_update;
 	int			moves;
 	int			score;
-	bool		weapon;
 	int			keys;
+	bool		weapon;
+	bool		dead;
 	t_textures	*textures;
 	t_obj		*player;
-	t_obj		*exit;
 	t_list		*objs;
 }	t_game;
 
@@ -103,8 +103,12 @@ void	player_action(t_game *game, e_key key);
 void	get_move_dir(e_key key, int *dir);
 void	get_patrol_dir(char type, int *dir);
 char	get_tile(t_game *game, int x, int y);
+void	move_patrol(t_game *game, t_obj *obj, int *dir);
+void	move_objects(t_game *game);
+void	move_player(t_game *game, int *dir);
 t_obj	*get_obj(t_game *game, int pos[2]);
 void	destroy_obj(t_game *game, t_obj *obj);
+void	end_game(t_game *game, bool win);
 
 
 #endif

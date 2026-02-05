@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 17:50:53 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/05 11:24:02 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/06 00:10:42 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	handle_keypress(int keycode, void *param)
 	
 	game = (t_game *) param;
 	key = get_key_input(keycode);
-	if (key == QUIT)
+	if (key == QUIT || game->dead)
 		quit_game(game);
 	else if (key != NOKEY)
 		player_action(game, key);
