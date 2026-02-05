@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 18:50:03 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/05 17:30:13 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/05 18:08:37 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ typedef struct s_textures
 	t_anim	*slime;
 	t_anim	*bat;
 	t_anim	*key;
+	t_anim	*weapon;
+	t_anim	*lock;
 }	t_textures;
 
 typedef struct s_obj

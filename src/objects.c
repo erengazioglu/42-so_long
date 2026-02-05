@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 02:14:34 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/05 17:42:57 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/05 18:07:58 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,11 @@ void	set_obj_anim(t_game *game, t_obj *obj, char type)
 	else if (ft_strchr("^>v<", type))
 		obj->anim = game->textures->bat;
 	else if (type == 'W')
+		obj->anim = game->textures->weapon;
+	else if (type == 'K')
 		obj->anim = game->textures->key;
+	else if (type == 'L')
+		obj->anim = game->textures->lock;
 }
 
 t_obj	*create_obj(t_game *game, char type, int pos[2])
