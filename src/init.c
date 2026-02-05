@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 00:55:41 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/05 02:24:29 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/05 10:49:17 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,7 @@ t_game	*new_game(char *mapfile)
 		game->map_size[1] * GRID_SIZE * GRID_MULT,
 		mapfile
 	);
+	render_map(game);
+	print_objs(game);
 	return (game);
 }

@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 18:50:03 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/05 02:24:01 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/05 10:52:38 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ t_obj	*create_obj(t_game *game, char type, int pos[2]);
 t_anim	*create_anim(t_game *game, char *name, int frames);
 long	current_time_ms(void);
 e_key	get_key_input(int keycode);
-void	move_player(t_game *game, e_key key);
+void	player_action(t_game *game, e_key key);
 void	get_move_dir(e_key key, int *dir);
 char	get_map_tile(t_game *game, int *pos);
 t_obj	*get_obj(t_game *game, int pos[2]);
