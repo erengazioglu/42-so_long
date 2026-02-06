@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 15:48:40 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/05 17:40:45 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/06 15:10:10 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static char	*build_texture_fp(char *name)
 {
 	char	*fp;
-	
+
 	fp = ft_calloc(ft_strlen("assets/x3.xpm") + ft_strlen(name) + 1, 1);
 	if (!fp)
 		return (NULL);
@@ -42,27 +42,44 @@ static char	*build_anim_fp(char *name, int frame)
 	return (fp);
 }
 
+bool	add_texture_to_anim(t_game *game, t_anim *anim, char *fp, int *dims)
+{
+	void	*texture;
+	t_list	*node;
+	
+	texture = mlx_xpm_file_to_image(game->ctx, fp, dims, dims + 1);
+	if (!texture)
+		return (game->error = MLX_TEXTURE_ERROR, false);
+	node = ft_lstnew(texture);
+	if (!node)
+		return (game->error = MEM_MALLOC, false);
+	ft_lstadd_back(&(anim->textures), node);
+	return (true);
+}
+
 t_anim	*create_anim(t_game *game, char *name, int frames)
 {
 	t_anim	*anim;
 	char	*fp;
-	int		w;
-	int		h;
-	// int		i;
-	
-	w = 0;
-	h = 0;
+	int		dims[2];
+	int		i;
+
 	anim = malloc(sizeof(t_anim));
+	if (!anim)
+		return (game->error = MEM_MALLOC, NULL);
 	anim->length = frames;
-	for (int i = 0; i < frames; i++)
+	i = 0;
+	while (i < frames)
 	{
 		if (frames == 1)
 			fp = build_texture_fp(name);
 		else
 			fp = build_anim_fp(name, i);
-		ft_printf("%sAnim filepath: %s%s\n", YEL, fp, RST);
-		ft_lstadd_back(&(anim->textures), ft_lstnew(mlx_xpm_file_to_image(game->ctx, fp, &w, &h)));
-		free(fp);
+		if (!fp)
+			return (game->error = MEM_MALLOC, NULL);
+		if (!add_texture_to_anim(game, anim, fp, dims))
+			return (NULL);
+		(free(fp), i = 0);
 	}
 	return (anim);
 }

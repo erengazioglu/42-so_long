@@ -6,13 +6,13 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 00:55:41 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/06 13:52:34 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/06 14:58:51 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-t_game	*check_textures(t_game *game)
+bool	check_textures(t_game *game)
 {
 	if (
 		game->textures->empty &&
@@ -23,14 +23,14 @@ t_game	*check_textures(t_game *game)
 	return (NULL);
 }
 
-t_game	*init_textures(t_game *game)
+bool	init_textures(t_game *game)
 {
 	int	w;
 	int h;
 
 	game->textures = malloc(sizeof(t_textures));
 	if (!game->textures)
-		return (NULL);
+		return (game->error = MEM_MALLOC, false);
 	game->textures->empty = mlx_xpm_file_to_image(
 		game->ctx, "assets/empty1x3.xpm", &w, &h
 	);
@@ -40,10 +40,10 @@ t_game	*init_textures(t_game *game)
 	game->textures->exit = mlx_xpm_file_to_image(
 		game->ctx, "assets/exit1x3.xpm", &w, &h
 	);
-	return (check_textures(game));
+	return (true);
 }
 
-t_game	*init_animations(t_game *game)
+bool	init_animations(t_game *game)
 {
 	game->textures->player = create_anim(game, "player1", 8);
 	game->textures->player_weapon = create_anim(game, "player2", 8);
@@ -53,12 +53,14 @@ t_game	*init_animations(t_game *game)
 	game->textures->weapon = create_anim(game, "weapon1", 1);
 	game->textures->key = create_anim(game, "key1", 1);
 	game->textures->lock = create_anim(game, "door2", 1);
-	return (game);
+	return (true);
 }
 
-t_game	*init_game(t_game *game)
+bool	init_game(t_game *game)
 {
 	game->ctx = mlx_init();
+	if (!game->ctx)
+		return (game->error = MLX_INIT_ERROR, false);
 	game->objs = NULL;
 	game->moves = 0;
 	game->score = 0;
@@ -78,7 +80,8 @@ t_game	*new_game(char *mapfile)
 	if (!game)
 		return (NULL);
 	init_game(game);
-	parse_map(mapfile, game);
+	if (!parse_map(mapfile, game))
+		crash(game);
 	print_map(game);
 	game->win = mlx_new_window(
 		game->ctx,

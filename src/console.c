@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 00:40:24 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/06 12:19:43 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/06 14:54:23 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	print_error(t_game *game)
 		ft_printf("Couldn't allocate memory for the game.%s\n", RST);
 	else if (game->error == MEM_MALLOC)
 		ft_printf("Memory allocation failed.%s\n", RST);
+	else if (game->error == MAP_READ_ERROR)
+		ft_printf("Couldn't read file.%s\n", RST);
 
 }
 
