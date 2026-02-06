@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 00:55:41 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/06 16:49:10 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/06 16:54:41 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ t_game	*new_game(char *mapfile)
 		return (NULL);
 	if (
 		!init_game(game, mapfile)
+		|| ft_printf("issues\n")
 		|| !init_textures(game) 
 		|| !init_animations(game)
 		|| !check_textures(game)
