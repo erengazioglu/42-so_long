@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 00:55:41 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/06 16:54:41 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/06 17:45:19 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ bool	init_textures(t_game *game)
 	int	w;
 	int h;
 
-	game->textures = malloc(sizeof(t_textures));
+	game->textures = malloc(sizeof(t_textures *));
 	if (!game->textures)
 		return (game->error = MEM_MALLOC, false);
 	game->textures->empty = mlx_xpm_file_to_image(
@@ -67,10 +67,13 @@ bool	init_animations(t_game *game)
 bool	init_game(t_game *game, char *mapfile)
 {
 	game->error = NO_ERROR;
+	game->objs = NULL;
+	game->player = NULL;
+	game->map = NULL;
 	game->ctx = mlx_init();
+	game->textures = NULL;
 	if (!game->ctx)
 		return (game->error = MLX_INIT_ERROR, false);
-	game->objs = NULL;
 	game->moves = 0;
 	game->score = 0;
 	game->keys = 0;
@@ -83,12 +86,11 @@ t_game	*new_game(char *mapfile)
 {
 	t_game	*game;
 
-	game = malloc(sizeof(t_game));
+	game = malloc(sizeof(t_game *));
 	if (!game)
 		return (NULL);
 	if (
 		!init_game(game, mapfile)
-		|| ft_printf("issues\n")
 		|| !init_textures(game) 
 		|| !init_animations(game)
 		|| !check_textures(game)

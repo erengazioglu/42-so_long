@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 17:50:53 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/06 15:19:57 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/06 17:14:24 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 void	crash(t_game *game)
 {
 	print_error(game);
+	cleanup(game);
+	exit(1);
 }
 
 void	quit_game(t_game *game)

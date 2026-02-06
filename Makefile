@@ -23,7 +23,8 @@ SRC		= \
 		src/util.c \
 		src/player.c \
 		src/move.c \
-		src/check_map.c
+		src/check_map.c \
+		src/cleanup.c
 
 all		: test
 test	: src/main.c libft/libft.a

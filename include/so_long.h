@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 18:50:03 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/06 16:40:01 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/06 17:29:16 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ void	move_player(t_game *game, int *dir);
 void	destroy_obj(t_game *game, t_obj *obj);
 void	end_game(t_game *game, bool win);
 void	crash(t_game *game);
+void	cleanup(t_game *game);
 
 
 #endif
