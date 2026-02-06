@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 19:05:00 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/06 13:53:42 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/06 16:48:45 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ bool	copy_map(char *fp, t_game *game)
 
 bool	parse_map(char *fp, t_game *game)
 {
-	get_map_dims(fp, game);
 	if (game->map_size[0] == -1)
 		return (false);
 	copy_map(fp, game);
@@ -75,5 +74,5 @@ bool	parse_map(char *fp, t_game *game)
 		"%s%s | w: %d, h: %d%s\n", 
 		YEL, fp, game->map_size[0], game->map_size[1], RST
 	);
-	return (false);
+	return (true);
 }

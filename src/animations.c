@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 15:48:40 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/06 15:10:10 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/06 16:46:17 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ t_anim	*create_anim(t_game *game, char *name, int frames)
 			return (game->error = MEM_MALLOC, NULL);
 		if (!add_texture_to_anim(game, anim, fp, dims))
 			return (NULL);
-		(free(fp), i = 0);
+		(free(fp), i++);
 	}
 	return (anim);
 }

@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 18:50:03 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/06 15:05:05 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/06 16:40:01 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,8 @@ typedef enum
 	MAP_INVALID_TILE,
 	MAP_INVALID_ROW_LENGTH,
 	MAP_INVALID_BOUNDARY,
-	MAP_NO_EXIT,
-	MAP_NO_PLAYER,
-	MAP_NO_PATH,
+	MAP_INCOMPLETE,
+	MAP_EXIT_INACCESSIBLE,
 	MLX_INIT_ERROR,
 	MLX_TEXTURE_ERROR,
 	MEM_MALLOC
@@ -116,18 +115,18 @@ void	render_objs(t_game *game);
 t_obj	*create_obj(t_game *game, char type, int pos[2]);
 t_anim	*create_anim(t_game *game, char *name, int frames);
 long	current_time_ms(void);
-e_key	get_key_input(int keycode);
 void	player_action(t_game *game, e_key key);
+e_key	get_key_input(int keycode);
+bool	get_map_dims(t_game *game, char *fp);
 void	get_move_dir(e_key key, int *dir);
 void	get_patrol_dir(char type, int *dir);
+t_obj	*get_obj(t_game *game, int pos[2]);
 char	get_tile(t_game *game, int x, int y);
 void	move_patrol(t_game *game, t_obj *obj, int *dir);
 void	move_objects(t_game *game);
 void	move_player(t_game *game, int *dir);
-t_obj	*get_obj(t_game *game, int pos[2]);
 void	destroy_obj(t_game *game, t_obj *obj);
 void	end_game(t_game *game, bool win);
-bool	get_map_dims(char *fp, t_game *game);
 void	crash(t_game *game);
 
 

@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 17:50:53 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/06 12:20:22 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/06 15:19:57 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	main(int argc, char **argv)
 	}
 	game = new_game(argv[1]);
 	if (!game)
-		crash(NULL);
+		crash(game);
 	mlx_key_hook(game->win, &handle_keypress, game);
 	mlx_hook(game->win, BTN_EXIT, 0L, &handle_close, game);
 	mlx_loop_hook(game->ctx, &process, game);
