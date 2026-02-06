@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 17:14:30 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/06 17:35:56 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/06 17:53:30 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	free_objects(t_game *game)
 	}
 }
 
-void	free_animation(t_anim *anim)
+void	free_animation(t_game *game, t_anim *anim)
 {
 	t_list	*node;
 	t_list	*temp;
@@ -38,7 +38,7 @@ void	free_animation(t_anim *anim)
 	{
 		temp = node;
 		node = node->next;
-		free(temp->content);
+		mlx_destroy_image(game->ctx, temp->content);
 		free(temp);
 	}
 	free(anim);
@@ -49,14 +49,14 @@ void	free_textures(t_game *game)
 	free(game->textures->empty);
 	free(game->textures->wall);
 	free(game->textures->exit);
-	free_animation(game->textures->player);
-	free_animation(game->textures->player);
-	free_animation(game->textures->player);
-	free_animation(game->textures->player);
-	free_animation(game->textures->player);
-	free_animation(game->textures->player);
-	free_animation(game->textures->player);
-	free_animation(game->textures->player);
+	free_animation(game, game->textures->player);
+	free_animation(game, game->textures->player_weapon);
+	free_animation(game, game->textures->coin);
+	free_animation(game, game->textures->slime);
+	free_animation(game, game->textures->bat);
+	free_animation(game, game->textures->key);
+	free_animation(game, game->textures->weapon);
+	free_animation(game, game->textures->lock);
 }
 
 void	free_mlx(t_game *game)
@@ -70,8 +70,8 @@ void	cleanup(t_game *game)
 {
 	if (!game)
 		return ;
-	free_mlx(game);
 	if (game->textures)
 		free_textures(game);
 	free_objects(game);
+	free_mlx(game);
 }
