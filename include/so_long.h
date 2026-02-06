@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 18:50:03 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/06 00:12:47 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/06 13:53:55 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,26 @@
 
 typedef enum
 {
-	NOKEY,
-	QUIT,
-	E, 		// 2
-	S, 		// 3
-	W, 		// 4
-	N		// 5
+	KEY_NONE,
+	KEY_QUIT,
+	KEY_E, 		// 2
+	KEY_S, 		// 3
+	KEY_W, 		// 4
+	KEY_N		// 5
 }	e_key;
+
+typedef enum
+{
+	NO_ERROR,
+	MAP_INVALID_TILE,
+	MAP_INVALID_ROW_LENGTH,
+	MAP_INVALID_BOUNDARY,
+	MAP_INVALID_FILEPATH,
+	MAP_NO_EXIT,
+	MAP_NO_PLAYER,
+	MAP_NO_PATH,
+	MEM_MALLOC
+}	e_err;
 
 typedef struct s_anim
 {
@@ -81,6 +94,7 @@ typedef struct s_game
 	int			keys;
 	bool		weapon;
 	bool		dead;
+	e_err		error;
 	t_textures	*textures;
 	t_obj		*player;
 	t_list		*objs;
@@ -91,6 +105,7 @@ t_game	*new_game(char *map);
 void	quit_game(t_game *game);
 void	print_map(t_game *game);
 void	print_objs(t_game *game);
+void	print_error(t_game *game);
 void	render_cell(t_game *game, int x, int y);
 void	render_map(t_game *game);
 void	render_obj(t_game *game, t_obj *obj, bool advance_frame);
@@ -109,6 +124,7 @@ void	move_player(t_game *game, int *dir);
 t_obj	*get_obj(t_game *game, int pos[2]);
 void	destroy_obj(t_game *game, t_obj *obj);
 void	end_game(t_game *game, bool win);
+bool	get_map_dims(char *fp, t_game *game);
 
 
 #endif

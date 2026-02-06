@@ -6,12 +6,17 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 17:50:53 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/06 00:10:42 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/06 12:20:22 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minilibx-linux/mlx.h"
 #include "../include/so_long.h"
+
+void	crash(t_game *game)
+{
+	print_error(game);
+}
 
 void	quit_game(t_game *game)
 {
@@ -45,9 +50,9 @@ int	handle_keypress(int keycode, void *param)
 	
 	game = (t_game *) param;
 	key = get_key_input(keycode);
-	if (key == QUIT || game->dead)
+	if (key == KEY_QUIT || game->dead)
 		quit_game(game);
-	else if (key != NOKEY)
+	else if (key != KEY_NONE)
 		player_action(game, key);
 	else
 		ft_printf("Key pressed: %d.\n", key);
@@ -73,6 +78,8 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	game = new_game(argv[1]);
+	if (!game)
+		crash(NULL);
 	mlx_key_hook(game->win, &handle_keypress, game);
 	mlx_hook(game->win, BTN_EXIT, 0L, &handle_close, game);
 	mlx_loop_hook(game->ctx, &process, game);

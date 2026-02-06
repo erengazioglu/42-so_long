@@ -14,8 +14,7 @@ endif
 SRC		= \
 		src/main.c \
 		src/parse_map.c \
-		src/render_map.c \
-		src/render_objs.c \
+		src/render.c \
 		src/init.c \
 		src/console.c \
 		src/objects.c \
@@ -23,7 +22,8 @@ SRC		= \
 		src/time.c \
 		src/util.c \
 		src/player.c \
-		src/move.c
+		src/move.c \
+		src/check_map.c
 
 all		: test
 test	: src/main.c libft/libft.a

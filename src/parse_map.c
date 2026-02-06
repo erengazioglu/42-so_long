@@ -6,57 +6,35 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 19:05:00 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/05 18:07:24 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/06 13:53:42 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-bool	get_map_dims(char *fp, t_game *game)
-{
-	int		fd;
-	char	*line;
-
-	ft_printf("map name: %s\n", fp);
-	fd = open(fp, O_RDONLY);
-	ft_printf("fd = %d\n", fd);
-	line = get_next_line(fd);
-	if (!line)
-	{
-		ft_printf("%sCouldn't read file.%s\n", RED, RST);
-		game->map_size[0] = -1;
-		game->map_size[1] = -1;
-		return (false);
-	}
-	game->map_size[0] = ft_strlen(line) - 1;
-	game->map_size[1] = 0;
-	while (line)
-	{
-		game->map_size[1]++;
-		free(line);
-		line = get_next_line(fd);
-	}
-	close(fd);
-	return (true);
-}
 
 char	*parse_row(char *row, t_game *game, int y)
 {
-	char	*ptr;
-	int		pos[2];
+	int	i;
+	int	pos[2];
 
-	ptr = row;
 	pos[0] = 0;
 	pos[1] = y;
-	while (*ptr)
+	i = 0;
+	while (row[i])
 	{
-		if (ft_strchr("CP<>XWLK", *ptr))
+		if (!ft_strchr("10ECP<>XWLK\n", row[i]))
 		{
-			create_obj(game, *ptr, pos);
-			*ptr = '0';
+			free(row);
+			return (NULL);
+		}
+		if (ft_strchr("CP<>XWLK", row[i]))
+		{
+			create_obj(game, row[i], pos);
+			row[i] = '0';
 		}
 		pos[0] += 1;
-		ptr++;
+		i++;
 	}
 	return (row);
 }
@@ -83,6 +61,7 @@ bool	copy_map(char *fp, t_game *game)
 		map_ptr++;
 		line = get_next_line(fd);
 	}
+	close(fd);
 	return (true);
 }
 
