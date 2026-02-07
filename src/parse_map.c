@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 19:05:00 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/07 03:37:28 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/07 03:51:51 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ bool	copy_map(char *fp, t_game *game)
 	if (!game->map)
 		return (game->error = MEM_MALLOC, false);
 	fd = open(fp, O_RDONLY);
+	if (fd == -1)
+		return (game->error = MAP_INVALID_FILEPATH, false);
 	map_ptr = game->map;
 	line = get_next_line(fd);
 	if (!line)
@@ -60,13 +62,13 @@ bool	copy_map(char *fp, t_game *game)
 		map_ptr++;
 		line = get_next_line(fd);
 	}
-	close(fd);
-	return (true);
+	return (close(fd), true);
 }
 
 bool	parse_map(char *fp, t_game *game)
 {
-	copy_map(fp, game);
+	if (!copy_map(fp, game))
+		return (false);
 	ft_printf(
 		"%s%s | w: %d, h: %d%s\n", 
 		YEL, fp, game->map_size[0], game->map_size[1], RST

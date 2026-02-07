@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 00:58:39 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/07 03:36:02 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/07 03:48:08 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ bool	check_textures(t_game *game)
 		game->textures->lock
 	)
 		return (true);
-	return (false);
+	return (game->error = MLX_TEXTURE_ERROR, false);
 }
 
 bool	get_map_dims(t_game *game, char *fp)
@@ -61,13 +61,11 @@ bool	get_map_dims(t_game *game, char *fp)
 	char	*line;
 
 	fd = open(fp, O_RDONLY);
-	// ft_printf("%d\n", fd);
 	if (fd == -1)
 		return (game->error = MAP_INVALID_FILEPATH, false);
 	line = get_next_line(fd);
 	if (!line)
 		return (game->error = MAP_READ_ERROR, false);
-
 	game->map_size[0] = ft_strlen(line) - 1;
 	game->map_size[1] = 0;
 	while (line)

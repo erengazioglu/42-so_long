@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 17:50:53 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/06 17:14:24 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/07 03:42:37 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	crash(t_game *game)
 
 void	quit_game(t_game *game)
 {
-	// mlx_clear_window(game->ctx, game->win);
-	// cleanup_images(game);
 	mlx_destroy_window(game->ctx, game->win);
 	free(game->ctx);
 	free(game);
@@ -76,7 +74,8 @@ int	main(int argc, char **argv)
 
 	if (argc == 1)
 	{
-		ft_printf("%sYou need to specify at least 1 map file.%s\n", RED, RST);
+		ft_printf("%sError:\nYou need to specify at least 1 map file.%s\n",
+			RED, RST);
 		return (1);
 	}
 	game = new_game(argv[1]);
