@@ -6,29 +6,24 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 00:55:41 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/07 02:43:23 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/07 02:50:42 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-bool	check_textures(t_game *game)
+bool	init_window(t_game *game)
 {
-	if (
-		game->textures->empty &&
-		game->textures->wall &&
-		game->textures->exit &&
-		game->textures->player &&
-		game->textures->player_weapon &&
-		game->textures->coin &&
-		game->textures->slime &&
-		game->textures->bat &&
-		game->textures->key &&
-		game->textures->weapon &&
-		game->textures->lock
-	)
-		return (true);
-	return (false);
+	game->win = mlx_new_window(
+		game->ctx,
+		game->map_size[0] * GRID_SIZE * GRID_MULT,
+		game->map_size[1] * GRID_SIZE * GRID_MULT,
+		"So long!"
+	);
+	if (!game->win)
+		return (game->error = MLX_INIT_ERROR, false);
+	render_map(game);
+	return (true);
 }
 
 bool	init_textures(t_game *game)
@@ -95,15 +90,9 @@ t_game	*new_game(char *mapfile)
 		|| !init_animations(game)
 		|| !check_textures(game)
 		|| !parse_map(mapfile, game)
+		|| !init_window(game)
 	)
 		crash(game);
-	game->win = mlx_new_window(
-		game->ctx,
-		game->map_size[0] * GRID_SIZE * GRID_MULT,
-		game->map_size[1] * GRID_SIZE * GRID_MULT,
-		mapfile
-	); // write check for this
-	render_map(game);
 	print_objs(game);
 	return (game);
 }

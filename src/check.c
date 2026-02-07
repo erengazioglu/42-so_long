@@ -1,16 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map.c                                        :+:      :+:    :+:   */
+/*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 00:58:39 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/07 02:37:50 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/07 02:46:15 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+bool	check_textures(t_game *game)
+{
+	if (
+		game->textures->empty &&
+		game->textures->wall &&
+		game->textures->exit &&
+		game->textures->player &&
+		game->textures->player_weapon &&
+		game->textures->coin &&
+		game->textures->slime &&
+		game->textures->bat &&
+		game->textures->key &&
+		game->textures->weapon &&
+		game->textures->lock
+	)
+		return (true);
+	return (false);
+}
 
 bool	get_map_dims(t_game *game, char *fp)
 {

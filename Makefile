@@ -23,7 +23,7 @@ SRC		= \
 		src/util.c \
 		src/player.c \
 		src/move.c \
-		src/check_map.c \
+		src/check.c \
 		src/cleanup.c
 
 all		: test
