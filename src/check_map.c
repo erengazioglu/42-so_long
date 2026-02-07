@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 00:58:39 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/06 16:51:45 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/07 02:37:50 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ bool	get_map_dims(t_game *game, char *fp)
 	char	*line;
 
 	fd = open(fp, O_RDONLY);
-	ft_printf("%d\n", fd);
+	// ft_printf("%d\n", fd);
 	if (fd == -1)
 		return (game->error = MAP_INVALID_FILEPATH, false);
 	line = get_next_line(fd);
