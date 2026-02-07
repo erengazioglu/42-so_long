@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 19:05:00 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/07 03:51:51 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/07 05:51:08 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ char	*parse_row(t_game *game, char *row, int y)
 	{
 		if (ft_strchr("CP<>XWLK", row[i]))
 		{
-			create_obj(game, row[i], pos);
+			if (!create_obj(game, row[i], pos))
+				return (NULL);
 			row[i] = '0';
 		}
 		pos[0] += 1;

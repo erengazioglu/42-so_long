@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 02:14:34 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/07 03:54:44 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/07 05:48:31 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	set_obj_anim(t_game *game, t_obj *obj, char type)
 t_obj	*create_obj(t_game *game, char type, int pos[2])
 {
 	t_obj	*new_obj;
+	t_list	*node;
 
 	new_obj = malloc(sizeof(t_obj));
 	if (!new_obj)
@@ -78,6 +79,11 @@ t_obj	*create_obj(t_game *game, char type, int pos[2])
 	if (type == 'P')
 		game->player = new_obj;
 	else
-		ft_lstadd_back(&(game->objs), ft_lstnew(new_obj)); // add checks here
+	{
+		node = ft_lstnew(new_obj);
+		if (!node)
+			return (game->error = MEM_MALLOC, NULL);
+		ft_lstadd_back(&(game->objs), ft_lstnew(new_obj));
+	}
 	return (new_obj);
 }
