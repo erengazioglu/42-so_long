@@ -6,11 +6,21 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 17:14:30 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/06 17:53:30 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/07 06:10:14 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+void	free_map(t_game *game)
+{
+	int	i;
+	
+	i = 0;
+	while (i < game->map_size[1])
+		free(game->map[i++]);
+	free(game->map);
+}
 
 void	free_objects(t_game *game)
 {
@@ -46,9 +56,9 @@ void	free_animation(t_game *game, t_anim *anim)
 
 void	free_textures(t_game *game)
 {
-	free(game->textures->empty);
-	free(game->textures->wall);
-	free(game->textures->exit);
+	mlx_destroy_image(game->ctx, game->textures->empty);
+	mlx_destroy_image(game->ctx, game->textures->wall);
+	mlx_destroy_image(game->ctx, game->textures->exit);
 	free_animation(game, game->textures->player);
 	free_animation(game, game->textures->player_weapon);
 	free_animation(game, game->textures->coin);
@@ -73,5 +83,6 @@ void	cleanup(t_game *game)
 	if (game->textures)
 		free_textures(game);
 	free_objects(game);
+	free_map(game);
 	free_mlx(game);
 }

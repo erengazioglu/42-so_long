@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 17:50:53 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/07 03:42:37 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/07 06:04:00 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,7 @@ void	crash(t_game *game)
 
 void	quit_game(t_game *game)
 {
-	mlx_destroy_window(game->ctx, game->win);
-	free(game->ctx);
-	free(game);
+	cleanup(game);
 	exit(0);
 }
 

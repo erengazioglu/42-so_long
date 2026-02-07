@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 15:48:40 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/07 03:46:39 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/07 06:08:46 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static char	*build_texture_fp(char *name)
 static char	*build_anim_fp(char *name, int frame)
 {
 	char	*fp;
+	char	*frame_str;
 
 	fp = ft_calloc(ft_strlen("assets/x3-00.xpm") + ft_strlen(name) + 1, 1);
 	if (!fp)
@@ -37,7 +38,11 @@ static char	*build_anim_fp(char *name, int frame)
 	ft_strcat(fp, "x3-");
 	if (frame < 10)
 		ft_strcat(fp, "0");
-	ft_strcat(fp, ft_itoa(frame));
+	frame_str = ft_itoa(frame);
+	if (!frame_str)
+		return (NULL);
+	ft_strcat(fp, frame_str);
+	free(frame_str);
 	ft_strcat(fp, ".xpm");
 	return (fp);
 }

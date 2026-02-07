@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 02:14:34 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/07 05:48:31 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/07 06:11:24 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ t_obj	*create_obj(t_game *game, char type, int pos[2])
 		node = ft_lstnew(new_obj);
 		if (!node)
 			return (game->error = MEM_MALLOC, NULL);
-		ft_lstadd_back(&(game->objs), ft_lstnew(new_obj));
+		ft_lstadd_back(&(game->objs), node);
 	}
 	return (new_obj);
 }
