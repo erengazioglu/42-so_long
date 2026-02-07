@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 15:48:40 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/07 06:08:46 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/07 06:18:17 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ static char	*build_texture_fp(char *name)
 {
 	char	*fp;
 
-	fp = ft_calloc(ft_strlen("assets/x3.xpm") + ft_strlen(name) + 1, 1);
+	fp = ft_calloc(ft_strlen("assets/textures/x3.xpm") + ft_strlen(name) + 1, 1);
 	if (!fp)
 		return (NULL);
-	ft_strcat(fp, "assets/");
+	ft_strcat(fp, "assets/textures/");
 	ft_strcat(fp, name);
 	ft_strcat(fp, "x3.xpm");
 	return (fp);
@@ -30,10 +30,10 @@ static char	*build_anim_fp(char *name, int frame)
 	char	*fp;
 	char	*frame_str;
 
-	fp = ft_calloc(ft_strlen("assets/x3-00.xpm") + ft_strlen(name) + 1, 1);
+	fp = ft_calloc(ft_strlen("assets/textures/x3-00.xpm") + ft_strlen(name) + 1, 1);
 	if (!fp)
 		return (NULL);
-	ft_strcat(fp, "assets/");
+	ft_strcat(fp, "assets/textures/");
 	ft_strcat(fp, name);
 	ft_strcat(fp, "x3-");
 	if (frame < 10)
