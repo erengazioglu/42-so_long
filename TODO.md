@@ -1,30 +1,40 @@
 # To-do before finishing
 
-## Cleanup and error handling
+## MUST do
 
-Write a cleanup code that:
-- checks inside game and frees every non-null allocations
-- frees game itself
+### Makefile
 
-Call the above cleanup code _after_ printing the error code in `game->error`...
+- Refactor makefile to be the "42" version
+- Have a bonus rule create a so_long_bonus executable, which is just a flag flip really (-D BONUS), which the code will use as `if (BONUS)` (...)
 
-## Maps
+
+Make should create a new executable set a "bonus"
+
+### Maps
 
 Write checks for:
-- MAP_INVALID_BOUNDARY,
-- MAP_INVALID_ROW_LENGTH,
-- MAP_INVALID_TILE,
+- ~~MAP_INVALID_BOUNDARY,~~
+- ~~MAP_INVALID_ROW_LENGTH,~~
+- ~~MAP_INVALID_TILE,~~
 - MAP_INCOMPLETE,
 - MAP_EXIT_INACCESSIBLE
 
 Make maps for each and test them.
 
-## Image sizes
+### Score and moves
 
-If map is too big, use smaller textures and grid size.
+- Write score and moves on screen with mlx font.
 
+### Miscellaneous
 
-## Miscellaneous
-
+- Clean up unnecessary comments.
+- Norminette.
 - Write a proper README.md.
 - Delete this TODO and NOTES before delivering.
+
+
+## COULD do
+
+### Image sizes
+
+If map is too big, use smaller textures and grid size.
