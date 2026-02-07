@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 00:55:41 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/07 02:38:37 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/07 02:43:23 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ bool	init_textures(t_game *game)
 	int	w;
 	int h;
 
-	game->textures = malloc(sizeof(t_textures *));
+	game->textures = malloc(sizeof(t_textures));
 	if (!game->textures)
 		return (game->error = MEM_MALLOC, false);
 	game->textures->empty = mlx_xpm_file_to_image(
@@ -86,7 +86,7 @@ t_game	*new_game(char *mapfile)
 {
 	t_game	*game;
 
-	game = malloc(sizeof(t_game *));
+	game = malloc(sizeof(t_game));
 	if (!game)
 		return (NULL);
 	if (
