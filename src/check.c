@@ -6,11 +6,35 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 00:58:39 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/07 02:46:15 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/07 03:36:02 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+bool	check_row(t_game *game, char *row, int y)
+{
+	int i;
+
+	if (y == 0 || y == game->map_size[1] - 1)
+	{
+		while (*row)
+		{
+			if (!ft_strchr("1\n", *(row++)))
+				return (game->error = MAP_INVALID_BOUNDARY, false);
+		}
+		return (true);
+	}
+	i = 0;
+	while (row[i])
+	{
+		if (i > game->map_size[0] + 1)
+			return (game->error = MAP_INVALID_ROW_LENGTH, false);
+		if (!ft_strchr("10ECP<>XWLK\n", row[i++]))
+			return (game->error = MAP_INVALID_TILE, false);
+	}
+	return (true);
+}
 
 bool	check_textures(t_game *game)
 {

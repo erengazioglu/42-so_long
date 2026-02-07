@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 18:50:03 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/07 02:49:25 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/07 02:57:05 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ void	end_game(t_game *game, bool win);
 void	crash(t_game *game);
 void	cleanup(t_game *game);
 bool	check_textures(t_game *game);
+bool	check_row(t_game *game, char *row, int y);
 
 
 #endif
