@@ -6,11 +6,37 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 00:58:39 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/07 03:48:08 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/15 21:29:08 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+bool	check_exit_reachable(t_game *game)
+{
+	int		*src;
+	int		*dst;
+	t_dijk	*dijk;
+
+	src = game->player->pos;
+	dst = game->exit_pos;
+	ft_printf("finding valid path (%d, %d)->(%d, %d)\n",
+		src[0], src[1], dst[0], dst[1]
+	);
+	dijk = dijkstra_init(game);
+	print_map(dijk->map, game->map_size);
+	if (!dijk)
+		return (false);
+	while (dijk->state == DIJK_SPREAD)
+		dijkstra_step(game, dijk);
+	if (dijk->state != DIJK_FOUND_GOAL)
+	{
+		game->error = MAP_NO_VALID_PATH;
+		return (dijkstra_cleanup(dijk), false);
+	}
+	return (dijkstra_cleanup(dijk), true);
+}
+
 
 bool	check_row(t_game *game, char *row, int y)
 {
@@ -54,30 +80,3 @@ bool	check_textures(t_game *game)
 		return (true);
 	return (game->error = MLX_TEXTURE_ERROR, false);
 }
-
-bool	get_map_dims(t_game *game, char *fp)
-{
-	int		fd;
-	char	*line;
-
-	fd = open(fp, O_RDONLY);
-	if (fd == -1)
-		return (game->error = MAP_INVALID_FILEPATH, false);
-	line = get_next_line(fd);
-	if (!line)
-		return (game->error = MAP_READ_ERROR, false);
-	game->map_size[0] = ft_strlen(line) - 1;
-	game->map_size[1] = 0;
-	while (line)
-	{
-		game->map_size[1]++;
-		free(line);
-		line = get_next_line(fd);
-	}
-	close(fd);
-	return (true);
-}
-
-// bool	check_map(t_game *game, char *fp)
-// {
-// }

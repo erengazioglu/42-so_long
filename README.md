@@ -19,6 +19,23 @@ _(TBD)_
 - Created a game object (`t_game`) that holds all pertinent data & can be passed around.
 - Game assets are held in a linked list for a more straightforward cleanup.
 
+#### Dijkstra
+
+Create a clone of the map with only:
+- Obstacles `(X)`
+- Goal `(*)`
+- Accessible tiles `( )`
+- Discovered tiles `(.)` = starting point (only one)
+
+Loop over the map, "spreading" the discovered tiles in the 4 cardinal directions if available:
+- If tile is not `(.)`, move on;
+- If tile is `(.)`, check up, down, left, right;
+- For each, if the tile being checked is `(*)`, stop everything and report `SUCCESS`;
+- If instead the tile being checked is `( )`, "discover" it `(.)`, report `SPREAD`, and continue;
+- If not, report `NO_SPREAD`, and continue.
+
+At the end of the loop, if no `SPREAD` has happened, the exit is unreachable; quit the loop and throw an error.
+
 
 ## Instructions
 

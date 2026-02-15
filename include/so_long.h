@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 18:50:03 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/07 02:57:05 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/15 21:29:08 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,13 @@ typedef enum
 
 typedef enum
 {
+	DIJK_NO_SPREAD,
+	DIJK_SPREAD,
+	DIJK_FOUND_GOAL
+}	e_dijkstate;
+
+typedef enum
+{
 	NO_ERROR,
 	MAP_INVALID_FILEPATH,
 	MAP_READ_ERROR,
@@ -49,11 +56,17 @@ typedef enum
 	MAP_INVALID_ROW_LENGTH,
 	MAP_INVALID_BOUNDARY,
 	MAP_INCOMPLETE,
-	MAP_EXIT_INACCESSIBLE,
+	MAP_NO_VALID_PATH,
 	MLX_INIT_ERROR,
 	MLX_TEXTURE_ERROR,
 	MEM_MALLOC
 }	e_err;
+
+typedef struct s_dijk
+{
+	char		**map;
+	e_dijkstate	state;
+}	t_dijk;
 
 typedef struct s_anim
 {
@@ -89,6 +102,7 @@ typedef struct s_game
 	void		*ctx;
 	void		*win;
 	int			map_size[2];
+	int			exit_pos[2];
 	int			last_update;
 	int			moves;
 	int			score;
@@ -105,7 +119,7 @@ typedef struct s_game
 bool	parse_map(char *fp, t_game *game);
 t_game	*new_game(char *map);
 void	quit_game(t_game *game);
-void	print_map(t_game *game);
+void	print_map(char **map, int map_size[2]);
 void	print_objs(t_game *game);
 void	print_error(t_game *game);
 void	render_cell(t_game *game, int x, int y);
@@ -131,6 +145,10 @@ void	crash(t_game *game);
 void	cleanup(t_game *game);
 bool	check_textures(t_game *game);
 bool	check_row(t_game *game, char *row, int y);
+bool	check_exit_reachable(t_game *game);
+t_dijk	*dijkstra_init(t_game *game);
+void	dijkstra_step(t_game *game, t_dijk *dijk);
+void	dijkstra_cleanup(t_dijk *dijk);
 
 
 #endif

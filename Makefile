@@ -24,7 +24,9 @@ SRC		= \
 		src/player.c \
 		src/move.c \
 		src/check.c \
-		src/cleanup.c
+		src/cleanup.c \
+		src/dijkstra_setup.c \
+		src/dijkstra_loop.c
 
 all		: test
 test	: src/main.c libft/libft.a

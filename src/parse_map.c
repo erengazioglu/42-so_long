@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 19:05:00 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/07 05:51:08 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/11 13:47:01 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ char	*parse_row(t_game *game, char *row, int y)
 			if (!create_obj(game, row[i], pos))
 				return (NULL);
 			row[i] = '0';
+		}
+		else if (row[i] == 'E')
+		{
+			game->exit_pos[0] = pos[0];
+			game->exit_pos[1] = pos[1];
 		}
 		pos[0] += 1;
 		i++;
@@ -74,5 +79,28 @@ bool	parse_map(char *fp, t_game *game)
 		"%s%s | w: %d, h: %d%s\n", 
 		YEL, fp, game->map_size[0], game->map_size[1], RST
 	);
+	return (true);
+}
+
+bool	get_map_dims(t_game *game, char *fp)
+{
+	int		fd;
+	char	*line;
+
+	fd = open(fp, O_RDONLY);
+	if (fd == -1)
+		return (game->error = MAP_INVALID_FILEPATH, false);
+	line = get_next_line(fd);
+	if (!line)
+		return (game->error = MAP_READ_ERROR, false);
+	game->map_size[0] = ft_strlen(line) - 1;
+	game->map_size[1] = 0;
+	while (line)
+	{
+		game->map_size[1]++;
+		free(line);
+		line = get_next_line(fd);
+	}
+	close(fd);
 	return (true);
 }

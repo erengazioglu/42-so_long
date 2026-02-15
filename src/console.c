@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 00:40:24 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/07 06:17:07 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/02/15 21:29:27 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,17 @@ void	print_error(t_game *game)
 		ft_printf("Map is not enclosed in walls.%s\n", RST);
 	else if (err == MAP_INVALID_ROW_LENGTH)
 		ft_printf("Map is not rectangular.%s\n", RST);
+	else if (err == MAP_NO_VALID_PATH)
+		ft_printf("No valid path detected.%s\n", RST);
 }
 
-void	print_map(t_game *game)
+void	print_map(char **map, int map_size[2])
 {
 	int	i;
 
 	i = 0;
-	while (i < game->map_size[1])
-		ft_printf("%s", (game->map)[i++]);
+	while (i < map_size[1])
+		ft_printf("%s\n", map[i++]);
 	ft_printf("\n");
 }
 

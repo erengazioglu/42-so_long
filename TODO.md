@@ -17,7 +17,7 @@ Write checks for:
 - ~~MAP_INVALID_ROW_LENGTH,~~
 - ~~MAP_INVALID_TILE,~~
 - MAP_INCOMPLETE,
-- MAP_EXIT_INACCESSIBLE
+- MAP_NO_VALID_PATH
 
 Make maps for each and test them.
 
