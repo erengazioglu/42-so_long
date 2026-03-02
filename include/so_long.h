@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 18:50:03 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/02 06:43:03 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/02 07:01:23 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef enum
 	MAP_INCOMPLETE,
 	MAP_NO_VALID_PATH,
 	MAP_NO_PLAYER,
+	MAP_DUPLICATE,
 	MLX_INIT_ERROR,
 	MLX_TEXTURE_ERROR,
 	MEM_MALLOC

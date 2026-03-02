@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 00:55:41 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/02 06:42:52 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/02 07:00:01 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,16 @@ bool	init_animations(t_game *game)
 
 bool	init_game(t_game *game, char *mapfile)
 {
+	game->ctx = mlx_init();
+	if (!game->ctx)
+		return (game->error = MLX_INIT_ERROR, false);
 	game->error = NO_ERROR;
 	game->objs = NULL;
 	game->player = NULL;
 	game->map = NULL;
 	game->textures = NULL;
-	game->ctx = mlx_init();
-	if (!game->ctx)
-		return (game->error = MLX_INIT_ERROR, false);
+	game->exit_pos[0] = -1;
+	game->exit_pos[1] = -1;
 	game->moves = 0;
 	game->score = 0;
 	game->keys = 0;

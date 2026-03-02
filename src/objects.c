@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 02:14:34 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/07 06:11:24 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/02 07:01:31 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,9 @@ t_obj	*create_obj(t_game *game, char type, int pos[2])
 	t_obj	*new_obj;
 	t_list	*node;
 
+	if ((type == 'P' && game->player)
+	|| (type == 'E' && game->exit_pos[0] != -1))
+		return (game->error = MAP_DUPLICATE, NULL);
 	new_obj = malloc(sizeof(t_obj));
 	if (!new_obj)
 		return (game->error = MEM_MALLOC, NULL);

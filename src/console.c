@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 00:40:24 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/02 06:33:16 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/02 07:01:57 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	print_error(t_game *game)
 		ft_printf("No valid path detected.%s\n", RST);
 	else if (err == MAP_NO_PLAYER)
 		ft_printf("Map has no player in it.%s\n", RST);
+	else if (err == MAP_DUPLICATE)
+		ft_printf("Map cannot have more than 1 player or exit.%s\n", RST);
 }
 
 void	print_map(char **map, int map_size[2])
