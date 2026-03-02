@@ -19,6 +19,13 @@ _(TBD)_
 - Created a game object (`t_game`) that holds all pertinent data & can be passed around.
 - Game assets are held in a linked list for a more straightforward cleanup.
 
+#### Map validity
+
+Game returns an error and quits gracefully if:
+- the map has no player or exit,
+- the boundaries of the map are not completely walled,
+- there is no valid path from player to exit (dijkstra algorithm).
+
 #### Dijkstra
 
 Create a clone of the map with only:
