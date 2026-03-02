@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 00:58:39 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/15 21:29:08 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/02 06:19:31 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ bool	check_row(t_game *game, char *row, int y)
 	i = 0;
 	while (row[i])
 	{
+		if ((i == 0 || i == game->map_size[0]) && row[i] != '1')
+			return (game->error = MAP_INVALID_BOUNDARY, false);
 		if (i > game->map_size[0] + 1)
 			return (game->error = MAP_INVALID_ROW_LENGTH, false);
 		if (!ft_strchr("10ECP<>XWLK\n", row[i++]))
