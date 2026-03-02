@@ -6,12 +6,11 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 19:05:00 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/02 06:40:49 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/02 06:44:19 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-
 
 char	*parse_row(t_game *game, char *row, int y)
 {
