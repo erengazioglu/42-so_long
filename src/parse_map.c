@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 19:05:00 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/11 13:47:01 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/02 06:40:49 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ bool	parse_map(char *fp, t_game *game)
 {
 	if (!copy_map(fp, game))
 		return (false);
+	if (!game->player)
+		return (game->error = MAP_NO_PLAYER, false);
 	ft_printf(
 		"%s%s | w: %d, h: %d%s\n", 
 		YEL, fp, game->map_size[0], game->map_size[1], RST

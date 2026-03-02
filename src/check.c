@@ -6,31 +6,11 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 00:58:39 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/02 06:31:20 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/02 06:42:58 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-
-bool	check_player_exists(t_game *game)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	y = 0;
-	while (y < game->map_size[1])
-	{
-		while (x < game->map_size[0])
-		{
-			if (game->map[y][x] == 'P')
-				return (true);
-			x++;
-		}
-		y++;
-	}
-	return (game->error = MAP_NO_PLAYER, false);
-}
 
 bool	check_exit_reachable(t_game *game)
 {

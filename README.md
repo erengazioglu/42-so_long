@@ -22,9 +22,11 @@ _(TBD)_
 #### Map validity
 
 Game returns an error and quits gracefully if:
-- the map has no player or exit,
+- map file can't be read,
+- the map has no player,
 - the boundaries of the map are not completely walled,
-- there is no valid path from player to exit (dijkstra algorithm).
+- there is no valid path from player to exit (dijkstra algorithm),
+- there is no exit (dijkstra already takes care of this).
 
 #### Dijkstra
 
