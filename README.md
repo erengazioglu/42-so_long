@@ -4,7 +4,7 @@ _This project has been created as part of the 42 curriculum by egaziogl._
 
 ## Description
 
-"so_long" is a basic top-down 2D game project.
+"so_long" is a basic 2D game project, where the player controls a character, moving it in the 4 cardinal directions. The player moves around the map in top-down view, walking into collectibles to pick them up, and then escaping through the exit.
 
 ### Requirements
 
