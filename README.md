@@ -10,19 +10,25 @@ _This project has been created as part of the 42 curriculum by egaziogl._
 
 The project must be built using the "MiniLibX" library, and accept a "map description" file as a parameter (extension .ber).
 
-#### Game rules
+#### Game requirements
 
 - WASD moves the player in the cardinal directions.
 - The player can't move into walls.
 - At every move, the current total number of movements is displayed (in the shell, or on the screen for the bonus).
 - Character's goal is "to collect all collectibles on the map and then escape by choosing the shortest possible route".
 
-#### Graphics rules
+#### Graphics requirements
 
 - ESC closes the window and quits the program in a clean way.
 - The "X" (close) window control does the same.
 - Minimizing/switching windows etc shouldn't disrupt the "window management".
 - The use of _images_ from MiniLibX is mandatory.
+
+#### Bonus requirements
+
+- There's an additional "enemy patrol", which makes the player lose when touched.
+- Sprites are animated.
+- The movement count is printed on screen instead of in the shell.
 
 ### The challenge
 
