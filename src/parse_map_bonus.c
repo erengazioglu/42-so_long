@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_map.c                                        :+:      :+:    :+:   */
+/*   parse_map_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 19:05:00 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/03 09:28:31 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/03 09:28:25 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static char	*parse_row(t_game *game, char *row, int y)
 	i = 0;
 	while (row[i])
 	{
-		if (ft_strchr("CP", row[i]))
+		if (ft_strchr("CP<>XWLK", row[i]))
 		{
 			if (!create_obj(game, row[i], pos))
 				return (NULL);

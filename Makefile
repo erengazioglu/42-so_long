@@ -1,6 +1,7 @@
 CC		= cc
 NAME	= so_long
-CFLAGS	= -Wall -Werror -Wextra -g
+BONUS	= so_long_bonus
+CFLAGS	= -Wall -Werror -Wextra
 
 # os-specific instructions
 OS		= $(shell uname -s)
@@ -12,24 +13,53 @@ ifeq ($(OS),Darwin)
 endif
 
 SRC		= \
-		src/main.c \
-		src/parse_map.c \
-		src/render.c \
-		src/init.c \
-		src/console.c \
-		src/objects.c \
-		src/animations.c \
-		src/time.c \
-		src/util.c \
-		src/player.c \
-		src/move.c \
-		src/check.c \
-		src/cleanup.c \
-		src/dijkstra_setup.c \
-		src/dijkstra_loop.c
+		main.c \
+		render.c \
+		init.c \
+		console.c \
+		objects.c \
+		animations.c \
+		time.c \
+		util.c \
+		player.c \
+		move.c \
+		cleanup.c \
+		dijkstra_setup.c \
+		dijkstra_loop.c
+SRC_MANDATORY	= \
+		parse_map.c \
+		check.c
+SRC_BONUS		= \
+		parse_map_bonus.c \
+		check_bonus.c
 
-all		: test
-test	: src/main.c libft/libft.a
-	$(CC) $(CFLAGS) $(SRC) $(LIBS) -o test.out
+OBJ				:= $(SRC:%.c=obj/%.o)
+OBJ_MANDATORY	:= $(SRC_MANDATORY:%.c=obj/%.o)
+OBJ_BONUS		:= $(SRC_BONUS:%.c=obj/%.o)
+
+all			: $(NAME) $(BONUS)
+
+$(NAME)		: $(OBJ) $(OBJ_MANDATORY) libft/libft.a
+	$(CC) $(CFLAGS) $(OBJ) $(OBJ_MANDATORY) $(LIBS) -o $@
+$(BONUS)	: $(OBJ) $(OBJ_BONUS) libft/libft.a
+	$(CC) $(CFLAGS) $(OBJ) $(OBJ_BONUS) $(LIBS) -o $@
+
+$(OBJ): $(SRC:%.c=src/%.c)
+	@mkdir -p obj
+	$(CC) $(CFLAGS) -c $(@:obj/%.o=src/%.c) -o $@
+$(OBJ_MANDATORY): $(SRC_MANDATORY:%.c=src/%.c)
+	@mkdir -p obj
+	$(CC) $(CFLAGS) -c $(@:obj/%.o=src/%.c) -o $@
+$(OBJ_BONUS): $(SRC_BONUS:%.c=src/%.c)
+	@mkdir -p obj
+	$(CC) $(CFLAGS) -c $(@:obj/%.o=src/%.c) -o $@
+
 libft/libft.a:
 	make -C libft
+
+clean	: 
+	rm -f $(NAME) $(BONUS)
+fclean	: clean
+	rm -f libft/libft.a
+	rm -rf obj
+re: fclean all

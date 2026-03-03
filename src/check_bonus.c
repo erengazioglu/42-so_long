@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check.c                                            :+:      :+:    :+:   */
+/*   check_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 00:58:39 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/03 09:34:47 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/03 09:34:41 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ bool	check_row(t_game *game, char *row, int y)
 	i = 0;
 	while (row[i])
 	{
-		if (!ft_strchr("10ECP\n", row[i++]))
+		if (!ft_strchr("10ECP<>XWLK\n", row[i++]))
 			return (game->error = MAP_INVALID_TILE, false);
 	}
 	return (true);

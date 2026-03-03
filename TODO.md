@@ -5,9 +5,7 @@
 ### Makefile
 
 - Refactor makefile to be the "42" version
-- Have a bonus rule create a so_long_bonus executable, which is just a flag flip really (-D BONUS), which the code will use as `if (BONUS)` (...)
-
-Make should create a new executable set a "bonus"
+- Double check that you understood "fclean" and "clean" correctly
 
 ### Score and moves
 
