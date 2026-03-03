@@ -44,13 +44,13 @@ $(NAME)		: $(OBJ) $(OBJ_MANDATORY) libft/libft.a
 $(BONUS)	: $(OBJ) $(OBJ_BONUS) libft/libft.a
 	$(CC) $(CFLAGS) $(OBJ) $(OBJ_BONUS) $(LIBS) -o $@
 
-$(OBJ): $(SRC:%.c=src/%.c)
+$(OBJ): $(SRC:%.c=src/%.c) include/so_long.h
 	@mkdir -p obj
 	$(CC) $(CFLAGS) -c $(@:obj/%.o=src/%.c) -o $@
-$(OBJ_MANDATORY): $(SRC_MANDATORY:%.c=src/%.c)
+$(OBJ_MANDATORY): $(SRC_MANDATORY:%.c=src/%.c) include/so_long.h
 	@mkdir -p obj
 	$(CC) $(CFLAGS) -c $(@:obj/%.o=src/%.c) -o $@
-$(OBJ_BONUS): $(SRC_BONUS:%.c=src/%.c)
+$(OBJ_BONUS): $(SRC_BONUS:%.c=src/%.c) include/so_long.h
 	@mkdir -p obj
 	$(CC) $(CFLAGS) -c $(@:obj/%.o=src/%.c) -o $@
 

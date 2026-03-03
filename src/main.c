@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 17:50:53 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/03 07:29:42 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/03 10:00:37 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	process(void *param)
 
 	game = (t_game *) param;
 	time = current_time_ms();
-	if ((int) time - game->last_update > 100)
+	if ((int) time - game->last_update > 1000 / REFRESH_RATE)
 	{
 		game->last_update = time;
 		render_objs(game);

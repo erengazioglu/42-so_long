@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 18:50:03 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/02 07:01:23 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/03 10:02:04 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # ifndef GRID_MULT
 #  define GRID_MULT	3
 # endif
+# define REFRESH_RATE 10
 
 // key, button, notify
 # define KEY_PRESS	2
