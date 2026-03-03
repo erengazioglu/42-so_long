@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 23:45:53 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/06 00:19:48 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/03 10:09:38 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	move_objects(t_game *game)
 		obj = node->content;
 		if (ft_strchr(">v<^", obj->type))
 		{
-			ft_printf("patrol found: %c\n", obj->type);
 			get_patrol_dir(obj->type, dir);
 			if (get_tile(game, obj->pos[0] + dir[0], obj->pos[1] + dir[1]) == '1')
 			{

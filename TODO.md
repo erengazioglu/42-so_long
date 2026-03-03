@@ -4,8 +4,14 @@
 
 ### Makefile
 
-- Refactor makefile to be the "42" version
 - Double check that you understood "fclean" and "clean" correctly
+
+### Malloc
+
+Test extensively for graceful exit:
+- for each type of invalid map,
+- for closing after death,
+- for closing after winning.
 
 ### Score and moves
 
