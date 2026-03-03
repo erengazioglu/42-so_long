@@ -4,20 +4,47 @@ _This project has been created as part of the 42 curriculum by egaziogl._
 
 ## Description
 
-_(TBD)_
+"so_long" is a basic top-down 2D game project.
 
 ### Requirements
 
-_(TBD)_
+The project must be built using the "MiniLibX" library, and accept a "map description" file as a parameter (extension .ber).
+
+#### Game rules
+
+- WASD moves the player in the cardinal directions.
+- The player can't move into walls.
+- At every move, the current total number of movements is displayed (in the shell, or on the screen for the bonus).
+- Character's goal is "to collect all collectibles on the map and then escape by choosing the shortest possible route".
+
+#### Graphics rules
+
+- ESC closes the window and quits the program in a clean way.
+- The "X" (close) window control does the same.
+- Minimizing/switching windows etc shouldn't disrupt the "window management".
+- The use of _images_ from MiniLibX is mandatory.
 
 ### The challenge
 
-_(TBD)_
+It's the first computer graphics project of the 42 curriculum, meaning we're dealing with (among other things):
+- window management,
+- memory management,
+- game loop,
+- event handling,
+- error handling.
+
+It requires the creation of a context that must be managed correctly: the loading of textures, the initialization of game objects... and most importantly, the cleanup after a game exit/crash.
 
 ### Implementation
 
-- Created a game object (`t_game`) that holds all pertinent data & can be passed around.
-- Game assets are held in a linked list for a more straightforward cleanup.
+The main architecture looks like this (check `new_game`):
+- a game object (`t_game`) is initialized as empty,
+- textures and animations are loaded into memory,
+- the map is parsed and its dynamic objects extracted (player, collectibles...),
+- a window is created based on the size of the map,
+- hooks are set up for key events and game loop,
+- the `mlx_loop` is run,
+- the program returns its exit value.
 
 #### Game object
 
@@ -25,6 +52,8 @@ The pertinant data in memory is held in a struct `t_game` which is always passed
 - read game state,
 - access other game objects,
 - quit gracefully.
+
+It holds references to the game objects in a linked list.
 
 #### Map validity
 
@@ -76,21 +105,25 @@ The game object has an `error` variable (enum) that holds the last encountered e
 
 ## Instructions
 
-_(TBD)_
-
 ### Compilation
 
-_(TBD)_
+Running `make` will compile both the mandatory version and the bonus one.  
+If you want to compile them separately: `make so_long` or `make bonus`.
 
-### Integration
+### Running
 
-_(TBD)_
+The program (`so_long` or `so_long_bonus`) expects 1 argument only: the relative filepath to the game map. Examples:  
+- `so_long assets/maps/subject-1.ber` (will run the first example in the subject pdf)
+- `so_long_bonus assets/maps/bonus/bonus-01.ber` (will run a map with all bonus features)
+- `so_long assets/maps/bonus/bonus-01.ber` (will crash because of bonus tiles not being handled by the mandatory-only version)
 
 ### Testing
 
-_(TBD)_
+A set of invalid maps are available under `assets/maps/invalid`, that you can run through either `so_long` or `so_long_bonus` (same result).
+
+Running bonus maps (`assets/maps/bonus`) through the mandatory-only version (`so_long`) will result in a crash — this is expected behavior, since the bonus maps include tiles that are not specified in the subject brief.
 
 
 ## Resources
 
-_(TBD)_
+- MiniLibX man pages.
