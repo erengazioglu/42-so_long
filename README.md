@@ -45,6 +45,9 @@ Loop over the map, "spreading" the discovered tiles in the 4 cardinal directions
 
 At the end of the loop, if no `SPREAD` has happened, the exit is unreachable; quit the loop and throw an error.
 
+#### Animations
+
+_(TBD)_
 
 ## Instructions
 
