@@ -6,11 +6,28 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 00:58:39 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/03 09:34:41 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/09 19:01:09 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+bool	check_args(int argc , char **argv)
+{
+	(void) argv;
+	if (argc != 2)
+	{
+		ft_printf("%sError:\nPlease specify exactly 1 map file as an argument.%s\n",
+		RED, RST);
+		return (false);
+	}
+	if (!ft_str_endswith(argv[1], ".ber") || ft_strlen(argv[1]) < 5)
+	{
+		ft_printf("%sError:\nMap file must be at least one character long, followed by a '.ber' extension.%s\n",
+		RED, RST);
+	}
+	return (false);
+}
 
 bool	check_exit_reachable(t_game *game)
 {

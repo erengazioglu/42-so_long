@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 17:50:53 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/09 14:17:35 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/09 18:59:27 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,8 @@ int	main(int argc, char **argv)
 {
 	t_game	*game;
 
-	if (argc != 2)
-	{
-		ft_printf("%sError:\nYou need to specify 1 map file as an argument.%s\n",
-			RED, RST);
+	if (!check_args(argc, argv))
 		return (1);
-	}
 	game = new_game(argv[1]);
 	if (!game)
 		crash(game);

@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 00:11:29 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/05 10:44:34 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/09 18:13:32 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,3 +115,9 @@ int		ft_printf(const char *fstr, ...);
 char	*get_next_line(int fd);
 
 #endif
+
+// Part 7: so_long
+
+bool	ft_str_startswith(char *str, char *test);
+bool	ft_str_endswith(char *str, char *test);
+bool	ft_str_equals(char *str, char *test);

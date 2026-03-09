@@ -8,11 +8,11 @@ CFLAGS	= -Wall -Werror -Wextra
 
 OS		= $(shell uname -s)
 ifeq ($(OS),Linux)
-	MLX		= minilibx-linux/mlx_linux
+# 	MLX		= minilibx-linux/mlx_linux
 	LIBS	= -Llibft -lft -Lminilibx-linux -lmlx_Linux -lXext -lX11 -lm
 endif
 ifeq ($(OS),Darwin)
-	MLX		= minilibx-linux/lmlx_Darwin
+# 	MLX		= minilibx-linux/lmlx_Darwin
 	LIBS	= -Llibft -lft -Lminilibx-linux -lmlx_Darwin -L/usr/X11/lib -lXext -lX11 -lm
 endif
 
@@ -44,13 +44,20 @@ OBJ_BONUS		:= $(SRC_BONUS:%.c=obj/%.o)
 
 all			: $(NAME) $(BONUS)
 
-$(NAME)		: $(OBJ) $(OBJ_MANDATORY) libft/libft.a $(MLX)
+# # I wanted to include the MLX build inside my makefile,
+# # but it relinks so I have no option but to leave it out.
+#
+# $(MLX):
+# 	@make -C minilibx-linux
+
+# $(NAME)		: $(OBJ) $(OBJ_MANDATORY) libft/libft.a $(MLX)
+$(NAME)		: $(OBJ) $(OBJ_MANDATORY) libft/libft.a
 	$(CC) $(CFLAGS) $(OBJ) $(OBJ_MANDATORY) $(LIBS) -o $@
-$(BONUS)	: $(OBJ) $(OBJ_BONUS) libft/libft.a $(MLX)
+# $(BONUS)	: $(OBJ) $(OBJ_BONUS) libft/libft.a $(MLX)
+$(BONUS)	: $(OBJ) $(OBJ_BONUS) libft/libft.a
 	$(CC) $(CFLAGS) $(OBJ) $(OBJ_BONUS) $(LIBS) -o $@
 
-$(MLX):
-	make -C minilibx-linux
+
 $(OBJ): $(SRC:%.c=src/%.c) include/so_long.h
 	@mkdir -p obj
 	$(CC) $(CFLAGS) -c $(@:obj/%.o=src/%.c) -o $@
@@ -68,5 +75,5 @@ clean	:
 fclean	: clean
 	rm -f $(NAME) $(BONUS)
 	rm -f libft/libft.a
-	make clean -C minilibx-linux
+# 	make clean -C minilibx-linux
 re: fclean all

@@ -74,14 +74,19 @@ SRCS_PRINTF = \
 	printf_uint.c 
 SRCS_GNL = \
 	get_next_line.c
+SRCS_SOLONG = \
+	ft_str_startswith.c \
+	ft_str_endswith.c \
+	ft_str_equals.c
 
-OBJS 		:= $(SRCS:%.c=obj/base/%.o)
-OBJS_BONUS 	:= $(SRCS_BONUS:%.c=obj/base_bonus/%.o)
-OBJS_EXTRA 	:= $(SRCS_EXTRA:%.c=obj/extra/%.o)
-OBJS_PRINTF := $(SRCS_PRINTF:%.c=obj/ft_printf/%.o)
-OBJS_GNL 	:= $(SRCS_GNL:%.c=obj/get_next_line/%.o)
+OBJS		:= $(SRCS:%.c=obj/base/%.o)
+OBJS_BONUS	:= $(SRCS_BONUS:%.c=obj/base_bonus/%.o)
+OBJS_EXTRA	:= $(SRCS_EXTRA:%.c=obj/extra/%.o)
+OBJS_PRINTF	:= $(SRCS_PRINTF:%.c=obj/ft_printf/%.o)
+OBJS_GNL	:= $(SRCS_GNL:%.c=obj/get_next_line/%.o)
+OBJS_SOLONG	:= $(SRCS_SOLONG:%.c=obj/so_long/%.o)
 
-all: $(NAME) bonus extra printf gnl
+all: $(NAME) bonus extra printf gnl so_long
 
 $(NAME): $(OBJS)
 	ar crs $@ $^
@@ -96,6 +101,9 @@ printf: $(OBJS_PRINTF)
 	ar crs $(NAME) $^
 
 gnl: $(OBJS_GNL)
+	ar crs $(NAME) $^
+
+so_long: $(OBJS_SOLONG)
 	ar crs $(NAME) $^
 
 $(OBJS): $(SRCS:%.c=src/base/%.c)
@@ -113,6 +121,9 @@ $(OBJS_PRINTF): $(SRCS_PRINTF:%.c=src/ft_printf/%.c)
 $(OBJS_GNL): $(SRCS_GNL:%.c=src/get_next_line/%.c)
 	@mkdir -p obj obj/get_next_line
 	$(CC) $(CFLAGS) -c $(@:obj/get_next_line/%.o=src/get_next_line/%.c) -o $@
+$(OBJS_SOLONG): $(SRCS_SOLONG:%.c=src/so_long/%.c)
+	@mkdir -p obj obj/so_long
+	$(CC) $(CFLAGS) -c $(@:obj/so_long/%.o=src/so_long/%.c) -o $@
 
 fclean: clean
 	rm -f $(NAME)

@@ -2,6 +2,12 @@
 
 ## MUST do
 
+### Map names
+
+Make sure map names are valid:
+- finishes by .ber
+- at least one character long (so total 5 chars at least) 
+
 ### Makefile
 
 - Double check that you understood "fclean" and "clean" correctly
