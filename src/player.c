@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 00:42:29 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/06 00:18:18 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/09 14:44:37 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,23 +73,10 @@ void	player_action(t_game *game, e_key key)
 	get_move_dir(key, dir);
 	dir[0] += game->player->pos[0];
 	dir[1] += game->player->pos[1];
-	ft_printf("Total moves: %d. ", game->moves);
 	obj = get_obj(game, dir);
 	if (obj)
-	{
-		ft_printf(
-			"%sObj at (%d, %d): %c%s\n",
-			CYN, dir[0], dir[1], get_obj(game, dir)->type, RST
-		);
 		interact(game, obj, dir);
-	}
 	else
-	{
-		ft_printf(
-			"%sTile at (%d, %d): %c%s\n",
-			CYN, dir[0], dir[1], get_tile(game, dir[0], dir[1]), RST
-		);
 		move_player(game, dir);
-	}
 	move_objects(game);
 }

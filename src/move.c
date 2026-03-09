@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 23:45:53 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/03 10:09:38 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/09 14:45:02 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ void	move_patrol(t_game *game, t_obj *obj, int *dir)
 	char	tile;
 
 	tile = get_tile(game, obj->pos[0] + dir[0], obj->pos[1] + dir[1]);
-	ft_printf("%sbat: tile (%d, %d) is %c%s\n", 
-		YEL, obj->pos[0] + dir[0], obj->pos[1] + dir[1], tile, RST);
 	if (tile == '0')
 	{
 		render_cell(game, obj->pos[0], obj->pos[1]);
