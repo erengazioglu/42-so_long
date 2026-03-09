@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 00:58:39 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/09 19:01:09 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/09 19:04:08 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool	check_args(int argc , char **argv)
 		ft_printf("%sError:\nMap file must be at least one character long, followed by a '.ber' extension.%s\n",
 		RED, RST);
 	}
-	return (false);
+	return (true);
 }
 
 bool	check_exit_reachable(t_game *game)

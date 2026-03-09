@@ -1,7 +1,7 @@
 CC		= cc
 NAME	= so_long
 BONUS	= so_long_bonus
-CFLAGS	= -Wall -Werror -Wextra
+CFLAGS	= -Wall -Werror -Wextra -g
 
 
 # the following is for determining the OS for different MLX libraries
