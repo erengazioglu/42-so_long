@@ -77,7 +77,8 @@ SRCS_GNL = \
 SRCS_SOLONG = \
 	ft_str_startswith.c \
 	ft_str_endswith.c \
-	ft_str_equals.c
+	ft_str_equals.c \
+	ft_get_filename.c
 
 OBJS		:= $(SRCS:%.c=obj/base/%.o)
 OBJS_BONUS	:= $(SRCS_BONUS:%.c=obj/base_bonus/%.o)

@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 00:11:29 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/09 18:13:32 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/09 20:08:49 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,3 +121,4 @@ char	*get_next_line(int fd);
 bool	ft_str_startswith(char *str, char *test);
 bool	ft_str_endswith(char *str, char *test);
 bool	ft_str_equals(char *str, char *test);
+char	*ft_get_filename(char *str);
