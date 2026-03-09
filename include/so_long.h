@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 18:50:03 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/03 10:09:02 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/09 14:58:55 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 # include "../minilibx-linux/mlx.h"
 
 # define MLX_WHITE	0x00FFFFFF
+# define MLX_BLACK	0x00000000
+# define MLX_RED	0x00DD6060
+# define MLX_GREEN	0x0090DD80
+
 # define GRID_SIZE	16
 # ifndef GRID_MULT
 #  define GRID_MULT	3
@@ -125,6 +129,7 @@ void	render_cell(t_game *game, int x, int y);
 void	render_map(t_game *game);
 void	render_obj(t_game *game, t_obj *obj, bool advance_frame);
 void	render_objs(t_game *game);
+bool	render_footer(t_game *game);
 t_obj	*create_obj(t_game *game, char type, int pos[2]);
 t_anim	*create_anim(t_game *game, char *name, int frames);
 long	current_time_ms(void);
@@ -148,6 +153,5 @@ bool	check_exit_reachable(t_game *game);
 t_dijk	*dijkstra_init(t_game *game);
 void	dijkstra_step(t_game *game, t_dijk *dijk);
 void	dijkstra_cleanup(t_dijk *dijk);
-
 
 #endif

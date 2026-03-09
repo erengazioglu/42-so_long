@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 00:42:29 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/09 14:44:37 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/09 15:02:13 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,19 @@ void	end_game(t_game *game, bool win)
 		game->player->pos[1] * GRID_SIZE * GRID_MULT
 	);
 	if (win)
-		ft_printf("%sYou win the game!\n", GRN);
+		mlx_string_put(game->ctx, game->win,
+			16 + GRID_MULT * GRID_SIZE * 3,
+			(game->map_size[1]) * GRID_MULT * GRID_SIZE + 16,
+			MLX_GREEN,
+			"You win the game! Press any key to exit."
+		);
 	else
-		ft_printf("%sA dead player is you!\n", RED);
-	ft_printf("Press any key to quit.%s\n", RST);
+		mlx_string_put(game->ctx, game->win,
+		16 + GRID_MULT * GRID_SIZE * 3,
+			(game->map_size[1]) * GRID_MULT * GRID_SIZE + 16,
+			MLX_RED,
+			"A dead player is you! Press any key to exit."
+		);
 }
 
 void	pick_up(t_game *game, t_obj *obj, int dir[2])
@@ -40,6 +49,7 @@ void	pick_up(t_game *game, t_obj *obj, int dir[2])
 		else
 			game->keys += 1;
 		destroy_obj(game, obj);
+		game->moves++;
 		move_player(game, dir);
 }
 
@@ -60,7 +70,10 @@ void	interact(t_game *game, t_obj *obj, int dir[2])
 			game->score += 1;
 		}
 		else
+		{
+			game->moves++;
 			end_game(game, false);
+		}
 	}
 	 
 }

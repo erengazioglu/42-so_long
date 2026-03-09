@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 17:50:53 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/03 18:32:02 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/09 14:17:35 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	handle_keypress(int keycode, void *param)
 		player_action(game, key);
 	else
 		ft_printf("Key pressed: %d.\n", key);
+	render_footer(game);
 	return (0);
 }
 

@@ -19,6 +19,7 @@ endif
 SRC		= \
 		main.c \
 		render.c \
+		render_footer.c \
 		init.c \
 		console.c \
 		objects.c \

@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 00:55:41 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/02 07:00:01 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/09 14:18:35 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,18 @@ bool	init_window(t_game *game)
 	game->win = mlx_new_window(
 		game->ctx,
 		game->map_size[0] * GRID_SIZE * GRID_MULT,
-		game->map_size[1] * GRID_SIZE * GRID_MULT,
+		game->map_size[1] * GRID_SIZE * GRID_MULT + 24,
 		"So long!"
 	);
 	if (!game->win)
 		return (game->error = MLX_INIT_ERROR, false);
 	render_map(game);
+	mlx_string_put(game->ctx, game->win,
+		16,
+		(game->map_size[1]) * GRID_MULT * GRID_SIZE + 16,
+		MLX_WHITE,
+		"moves:"
+	);
 	return (true);
 }
 
