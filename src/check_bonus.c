@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 00:58:39 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/09 20:09:46 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/09 20:36:35 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ bool	check_exit_reachable(t_game *game)
 	if (dijk->state != DIJK_FOUND_GOAL)
 	{
 		game->error = MAP_NO_VALID_PATH;
-		return (dijkstra_cleanup(dijk), false);
+		return (dijkstra_cleanup(game, dijk), false);
 	}
-	return (dijkstra_cleanup(dijk), true);
+	return (dijkstra_cleanup(game, dijk), true);
 }
 
 

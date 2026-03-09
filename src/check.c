@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 00:58:39 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/09 20:09:54 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/09 20:36:44 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,6 @@ bool	check_exit_reachable(t_game *game)
 
 	src = game->player->pos;
 	dst = game->exit_pos;
-	ft_printf("finding valid path (%d, %d)->(%d, %d)\n",
-		src[0], src[1], dst[0], dst[1]
-	);
 	dijk = dijkstra_init(game);
 	print_map(dijk->map, game->map_size);
 	if (!dijk)
@@ -52,9 +49,9 @@ bool	check_exit_reachable(t_game *game)
 	if (dijk->state != DIJK_FOUND_GOAL)
 	{
 		game->error = MAP_NO_VALID_PATH;
-		return (dijkstra_cleanup(dijk), false);
+		return (dijkstra_cleanup(game, dijk), false);
 	}
-	return (dijkstra_cleanup(dijk), true);
+	return (dijkstra_cleanup(game, dijk), true);
 }
 
 

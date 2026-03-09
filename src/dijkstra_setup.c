@@ -6,15 +6,21 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 12:09:59 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/15 21:16:28 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/09 20:38:10 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void	dijkstra_cleanup(t_dijk *dijk)
+void	dijkstra_cleanup(t_game *game, t_dijk *dijk)
 {
-	free(dijk); // do this better
+	int	i;
+	
+	i = 0;
+	while (i < game->map_size[1])
+		free(dijk->map[i++]);
+	free(dijk->map);
+	free(dijk);
 }
 
 static char	convert(char c)
@@ -69,7 +75,7 @@ t_dijk	*dijkstra_init(t_game *game)
 	if (!dijk)
 		return (game->error = MEM_MALLOC, NULL);
 	if (!dijkstra_create_map(game, dijk))
-		return (game->error = MEM_MALLOC, dijkstra_cleanup(dijk), NULL);
+		return (game->error = MEM_MALLOC, dijkstra_cleanup(game, dijk), NULL);
 	dijk->state = DIJK_SPREAD;
 	return (dijk);
 }
