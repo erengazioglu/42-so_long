@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 17:14:30 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/07 06:10:14 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/09 21:14:52 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	free_map(t_game *game)
 	int	i;
 	
 	i = 0;
-	while (i < game->map_size[1])
+	while (i < game->map_size[1] && game->map[i])
 		free(game->map[i++]);
 	free(game->map);
 }
@@ -27,7 +27,8 @@ void	free_objects(t_game *game)
 	t_list	*node;
 	t_list	*temp;
 
-	free(game->player);
+	if (game->player)
+		free(game->player);
 	node = game->objs;
 	while (node)
 	{
@@ -83,6 +84,7 @@ void	cleanup(t_game *game)
 	if (game->textures)
 		free_textures(game);
 	free_objects(game);
-	free_map(game);
+	if (game->map)
+		free_map(game);
 	free_mlx(game);
 }
