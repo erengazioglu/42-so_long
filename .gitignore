@@ -8,3 +8,5 @@ minilibx_mms*/
 so_long
 so_long_bonus
 obj/.DS_Store
+.DS_Store
+obj/
