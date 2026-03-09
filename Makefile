@@ -58,8 +58,8 @@ libft/libft.a:
 	make -C libft
 
 clean	: 
-	rm -f $(NAME) $(BONUS)
-fclean	: clean
-	rm -f libft/libft.a
 	rm -rf obj
+fclean	: clean
+	rm -f $(NAME) $(BONUS)
+	rm -f libft/libft.a
 re: fclean all
