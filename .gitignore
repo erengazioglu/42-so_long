@@ -7,4 +7,4 @@ minilibx_mms*/
 *.dSYM/
 so_long
 so_long_bonus
-obj/
+obj/.DS_Store

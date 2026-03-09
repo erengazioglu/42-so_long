@@ -3,13 +3,17 @@ NAME	= so_long
 BONUS	= so_long_bonus
 CFLAGS	= -Wall -Werror -Wextra
 
-# os-specific instructions
+
+# the following is for determining the OS for different MLX libraries
+
 OS		= $(shell uname -s)
 ifeq ($(OS),Linux)
-    LIBS = -Llibft -lft -Lminilibx-linux -lmlx_Linux -lXext -lX11 -lm
+	MLX		= minilibx-linux/mlx_linux
+	LIBS	= -Llibft -lft -Lminilibx-linux -lmlx_Linux -lXext -lX11 -lm
 endif
 ifeq ($(OS),Darwin)
-    LIBS = -Llibft -lft -Lminilibx-linux -lmlx_Darwin -L/usr/X11/lib -lXext -lX11 -lm
+	MLX		= minilibx-linux/lmlx_Darwin
+	LIBS	= -Llibft -lft -Lminilibx-linux -lmlx_Darwin -L/usr/X11/lib -lXext -lX11 -lm
 endif
 
 SRC		= \
@@ -39,11 +43,13 @@ OBJ_BONUS		:= $(SRC_BONUS:%.c=obj/%.o)
 
 all			: $(NAME) $(BONUS)
 
-$(NAME)		: $(OBJ) $(OBJ_MANDATORY) libft/libft.a
+$(NAME)		: $(OBJ) $(OBJ_MANDATORY) libft/libft.a $(MLX)
 	$(CC) $(CFLAGS) $(OBJ) $(OBJ_MANDATORY) $(LIBS) -o $@
-$(BONUS)	: $(OBJ) $(OBJ_BONUS) libft/libft.a
+$(BONUS)	: $(OBJ) $(OBJ_BONUS) libft/libft.a $(MLX)
 	$(CC) $(CFLAGS) $(OBJ) $(OBJ_BONUS) $(LIBS) -o $@
 
+$(MLX):
+	make -C minilibx-linux
 $(OBJ): $(SRC:%.c=src/%.c) include/so_long.h
 	@mkdir -p obj
 	$(CC) $(CFLAGS) -c $(@:obj/%.o=src/%.c) -o $@
@@ -56,10 +62,10 @@ $(OBJ_BONUS): $(SRC_BONUS:%.c=src/%.c) include/so_long.h
 
 libft/libft.a:
 	make -C libft
-
 clean	: 
 	rm -rf obj
 fclean	: clean
 	rm -f $(NAME) $(BONUS)
 	rm -f libft/libft.a
+	make clean -C minilibx-linux
 re: fclean all
