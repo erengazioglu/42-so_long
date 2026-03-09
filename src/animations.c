@@ -6,11 +6,13 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 15:48:40 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/09 20:30:59 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/09 20:52:05 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+// t_anim	*init_anim(t_game *game,)
 
 static char	*build_texture_fp(char *name)
 {
@@ -73,6 +75,7 @@ t_anim	*create_anim(t_game *game, char *name, int frames)
 	if (!anim)
 		return (game->error = MEM_MALLOC, NULL);
 	anim->length = frames;
+	anim->textures = NULL;
 	i = 0;
 	while (i < frames)
 	{
@@ -88,3 +91,4 @@ t_anim	*create_anim(t_game *game, char *name, int frames)
 	}
 	return (anim);
 }
+
