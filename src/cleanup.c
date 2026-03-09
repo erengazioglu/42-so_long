@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 17:14:30 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/09 21:16:45 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/09 21:25:23 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	free_textures(t_game *game)
 	free_animation(game, game->textures->key);
 	free_animation(game, game->textures->weapon);
 	free_animation(game, game->textures->lock);
+	free(game->textures);
 }
 
 void	free_mlx(t_game *game)
@@ -76,7 +77,7 @@ void	free_mlx(t_game *game)
 		mlx_destroy_window(game->ctx, game->win);
 	if (game->ctx)
 		mlx_destroy_display(game->ctx);
-		// free(game->ctx);
+	free(game->ctx);
 }
 
 void	cleanup(t_game *game)
@@ -89,4 +90,5 @@ void	cleanup(t_game *game)
 	if (game->map)
 		free_map(game);
 	free_mlx(game);
+	free(game);
 }
