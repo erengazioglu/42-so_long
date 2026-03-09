@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 17:14:30 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/09 21:14:52 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/09 21:16:45 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,9 @@ void	free_mlx(t_game *game)
 {
 	if (game->win)
 		mlx_destroy_window(game->ctx, game->win);
-	free(game->ctx);
+	if (game->ctx)
+		mlx_destroy_display(game->ctx);
+		// free(game->ctx);
 }
 
 void	cleanup(t_game *game)
