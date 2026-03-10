@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 02:14:34 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/11 00:31:39 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/11 00:34:36 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@ void	delete_content(void *content)
 	free(content);
 }
 
-// void	destroy_obj(t_game *game, t_obj *obj)
-// {
-// 	t_list	*node;
+void	destroy_obj(t_game *game, t_obj *obj)
+{
+	t_list	*node;
 
-// 	node = ft_lstfind(game->objs, obj);
-// 	if (node)
-// 	{
-// 		render_cell(game, obj->pos[0], obj->pos[1]);
-// 		ft_lstremove(&(game->objs), node, &delete_content);
-// 	}
-// }
+	node = ft_lstfind(game->objs, obj);
+	if (node)
+	{
+		render_cell(game, obj->pos[0], obj->pos[1]);
+		ft_lstremove(&(game->objs), node, &delete_content);
+	}
+}
 
 t_obj	*get_obj(t_game *game, int pos[2])
 {
