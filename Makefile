@@ -44,8 +44,9 @@ OBJ_BONUS		:= $(SRC_BONUS:%.c=obj/%.o)
 
 all			: $(NAME) $(BONUS)
 
-test		: obj/parse_map.o obj/init.o include/so_long.h 
+test		: obj/parse_map.o obj/init.o include/so_long.h libft/libft.a
 	$(CC) $(CFLAGS) obj/parse_map.o obj/init.o $(LIBS) -o $@
+re_test		: clean all
 
 # # I wanted to include the MLX build inside my makefile,
 # # but it relinks so I have no option but to leave it out.
