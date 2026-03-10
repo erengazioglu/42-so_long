@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 00:55:41 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/10 10:45:02 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/10 10:53:06 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ bool	init_game(t_game *game, char *mapfile)
 	fd = open(mapfile, O_RDONLY);
 	if (fd == -1)
 		return (game->error = MAP_INVALID_FILEPATH, false);
-	return (get_map_dims(game, mapfile));
+	return (get_map_dims(game, fd));
 }
 
 // t_game	*new_game(char *mapfile)

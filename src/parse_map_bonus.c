@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 19:05:00 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/03 09:28:25 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/10 10:52:13 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static bool	copy_map(char *fp, t_game *game)
 	if (!line)
 		return (game->error = MAP_READ_ERROR, false);
 	y = 0;
-	while (line)
+	while (line && *line != '\n')
 	{
 		*map_ptr = parse_row(game, line, y++);
 		if (!(*map_ptr))
@@ -83,24 +83,27 @@ bool	parse_map(char *fp, t_game *game)
 	return (true);
 }
 
-bool	get_map_dims(t_game *game, char *fp)
+bool	get_map_dims(t_game *game, int fd)
 {
-	int		fd;
 	char	*line;
 
-	fd = open(fp, O_RDONLY);
-	if (fd == -1)
-		return (game->error = MAP_INVALID_FILEPATH, false);
 	line = get_next_line(fd);
 	if (!line)
 		return (game->error = MAP_READ_ERROR, false);
 	game->map_size[0] = ft_strlen(line) - 1;
 	game->map_size[1] = 0;
-	while (line)
+	while (line && *line != '\n')
 	{
 		game->map_size[1]++;
 		free(line);
 		line = get_next_line(fd);
+	}
+	if (line && *line == '\n')
+	{
+		free(line);
+		line = get_next_line(fd);
+		if (line)
+			return (free(line), game->error = MAP_NL_ENDING, false);
 	}
 	close(fd);
 	return (true);

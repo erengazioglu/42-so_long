@@ -6,18 +6,12 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 19:05:00 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/10 10:39:55 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/10 11:10:45 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-// char	**read_map(t_game *game, char *fp)
-// {
-// 	int		fd;
-// 	int		y;
-// 	char	*line;
-// 	char	**map_ptr;
 
 // 	game->map = 
 // }
@@ -93,14 +87,10 @@
 // 	return (true);
 // }
 
-bool	get_map_dims(t_game *game, char *fp)
+bool	get_map_dims(t_game *game, int fd)
 {
-	int		fd;
 	char	*line;
 
-	fd = open(fp, O_RDONLY);
-	if (fd == -1)
-		return (game->error = MAP_INVALID_FILEPATH, false);
 	line = get_next_line(fd);
 	if (!line)
 		return (game->error = MAP_READ_ERROR, false);
@@ -131,4 +121,7 @@ int	main(int argc, char **argv)
 	game = malloc(sizeof(t_game));
 	init_game(game, argv[1]);
 	ft_printf("map size: (%d, %d)\n", game->map_size[0], game->map_size[1]);
+	game->map = read_n_lines(argv[1], game->map_size[1]);
+	for (int i = 0; i < game->map_size[1]; i++)
+		ft_printf("%s\n", game->map[i]);
 }
