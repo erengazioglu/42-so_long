@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 18:50:03 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/09 20:36:13 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/10 10:45:25 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef enum
 	MAP_NO_VALID_PATH,
 	MAP_NO_PLAYER,
 	MAP_DUPLICATE,
+	MAP_NL_ENDING,
 	MLX_INIT_ERROR,
 	MLX_TEXTURE_ERROR,
 	MEM_MALLOC
@@ -135,7 +136,7 @@ t_anim	*create_anim(t_game *game, char *name, int frames);
 long	current_time_ms(void);
 void	player_action(t_game *game, e_key key);
 e_key	get_key_input(int keycode);
-bool	get_map_dims(t_game *game, char *fp);
+bool	get_map_dims(t_game *game, int fd);
 void	get_move_dir(e_key key, int *dir);
 void	get_patrol_dir(char type, int *dir);
 t_obj	*get_obj(t_game *game, int pos[2]);
@@ -154,5 +155,8 @@ bool	check_args(int argc, char **argv);
 t_dijk	*dijkstra_init(t_game *game);
 void	dijkstra_step(t_game *game, t_dijk *dijk);
 void	dijkstra_cleanup(t_game *game, t_dijk *dijk);
+
+// test only, delete later?
+bool	init_game(t_game *game, char *mapfile);
 
 #endif

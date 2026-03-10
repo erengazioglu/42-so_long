@@ -6,11 +6,31 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 00:40:24 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/03 07:19:22 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/10 10:43:10 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+void	print_map_error(e_err err)
+{
+	if (err == MAP_READ_ERROR || err == MAP_INVALID_FILEPATH)
+		ft_printf("Couldn't read file.%s\n", RST);
+	else if (err == MAP_INVALID_BOUNDARY)
+		ft_printf("Map is not enclosed in walls.%s\n", RST);
+	else if (err == MAP_INVALID_ROW_LENGTH)
+		ft_printf("Map is not rectangular.%s\n", RST);
+	else if (err == MAP_NO_VALID_PATH)
+		ft_printf("No valid path detected.%s\n", RST);
+	else if (err == MAP_NO_PLAYER)
+		ft_printf("Map has no player in it.%s\n", RST);
+	else if (err == MAP_DUPLICATE)
+		ft_printf("Map cannot have more than 1 player or exit.%s\n", RST);
+	else if (err == MAP_INVALID_TILE)
+		ft_printf("Map file has an invalid character.%s\n", RST);
+	else if (err == MAP_NL_ENDING)
+		ft_printf("Unexpected number of new lines before EOF" RST);
+}
 
 void	print_error(t_game *game)
 {
@@ -25,20 +45,8 @@ void	print_error(t_game *game)
 	err = game->error;
 	if (err == MEM_MALLOC)
 		ft_printf("Memory allocation failed.%s\n", RST);
-	else if (err == MAP_READ_ERROR || err == MAP_INVALID_FILEPATH)
-		ft_printf("Couldn't read file.%s\n", RST);
-	else if (err == MAP_INVALID_BOUNDARY)
-		ft_printf("Map is not enclosed in walls.%s\n", RST);
-	else if (err == MAP_INVALID_ROW_LENGTH)
-		ft_printf("Map is not rectangular.%s\n", RST);
-	else if (err == MAP_NO_VALID_PATH)
-		ft_printf("No valid path detected.%s\n", RST);
-	else if (err == MAP_NO_PLAYER)
-		ft_printf("Map has no player in it.%s\n", RST);
-	else if (err == MAP_DUPLICATE)
-		ft_printf("Map cannot have more than 1 player or exit.%s\n", RST);
-	else if (err == MAP_INVALID_TILE)
-		ft_printf("Map file has an invalid character.%s\n", RST);
+	else
+		print_map_error(err);
 }
 
 void	print_map(char **map, int map_size[2])

@@ -6,11 +6,21 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 19:05:00 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/10 10:22:14 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/10 10:39:55 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+// char	**read_map(t_game *game, char *fp)
+// {
+// 	int		fd;
+// 	int		y;
+// 	char	*line;
+// 	char	**map_ptr;
+
+// 	game->map = 
+// }
 
 // static char	*parse_row(t_game *game, char *row, int y)
 // {
@@ -83,30 +93,42 @@
 // 	return (true);
 // }
 
-// bool	get_map_dims(t_game *game, char *fp)
-// {
-// 	int		fd;
-// 	char	*line;
+bool	get_map_dims(t_game *game, char *fp)
+{
+	int		fd;
+	char	*line;
 
-// 	fd = open(fp, O_RDONLY);
-// 	if (fd == -1)
-// 		return (game->error = MAP_INVALID_FILEPATH, false);
-// 	line = get_next_line(fd);
-// 	if (!line)
-// 		return (game->error = MAP_READ_ERROR, false);
-// 	game->map_size[0] = ft_strlen(line) - 1;
-// 	game->map_size[1] = 0;
-// 	while (line)
-// 	{
-// 		game->map_size[1]++;
-// 		free(line);
-// 		line = get_next_line(fd);
-// 	}
-// 	close(fd);
-// 	return (true);
-// }
+	fd = open(fp, O_RDONLY);
+	if (fd == -1)
+		return (game->error = MAP_INVALID_FILEPATH, false);
+	line = get_next_line(fd);
+	if (!line)
+		return (game->error = MAP_READ_ERROR, false);
+	game->map_size[0] = ft_strlen(line) - 1;
+	game->map_size[1] = 0;
+	while (line && *line != '\n')
+	{
+		game->map_size[1]++;
+		free(line);
+		line = get_next_line(fd);
+	}
+	if (line && *line == '\n')
+	{
+		free(line);
+		line = get_next_line(fd);
+		if (line)
+			return (free(line), game->error = MAP_NL_ENDING, false);
+	}
+	close(fd);
+	return (true);
+}
 
 int	main(int argc, char **argv)
 {
-	ft_printf("hello %d %s\n", argc, *argv);
+	t_game	*game;
+	
+	(void) argc;
+	game = malloc(sizeof(t_game));
+	init_game(game, argv[1]);
+	ft_printf("map size: (%d, %d)\n", game->map_size[0], game->map_size[1]);
 }
