@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 19:05:00 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/10 11:21:53 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/10 12:35:27 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,24 +99,25 @@ bool	get_map_dims(t_game *game, int fd)
 	while (line && *line != '\n')
 	{
 		game->map_size[1]++;
-		free(line);
-		line = get_next_line(fd);
+		(free(line), line = get_next_line(fd));
 	}
 	if (line && *line == '\n')
 	{
-		free(line);
-		line = get_next_line(fd);
+		(free(line), line = get_next_line(fd));
 		if (line)
+		{
+			while (line)
+				(free(line), line = get_next_line(fd));
 			return (free(line), game->error = MAP_NL_ENDING, false);
+		}
 	}
-	close(fd);
-	return (true);
+	return (close(fd), true);
 }
 
 int	main(int argc, char **argv)
 {
 	t_game	*game;
-	
+
 	(void) argc;
 	game = malloc(sizeof(t_game));
 	init_game(game, argv[1]);
