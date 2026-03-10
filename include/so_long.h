@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 18:50:03 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/10 10:45:25 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/10 14:09:44 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ typedef struct s_game
 	t_list		*objs;
 }	t_game;
 
-bool	parse_map(char *fp, t_game *game);
+bool	parse_map(t_game *game);
 t_game	*new_game(char *map);
 void	quit_game(t_game *game);
 void	print_map(char **map, int map_size[2]);

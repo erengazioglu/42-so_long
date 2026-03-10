@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 19:05:00 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/10 12:35:27 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/10 14:09:54 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,18 +74,18 @@
 // 	return (close(fd), true);
 // }
 
-// bool	parse_map(char *fp, t_game *game)
-// {
-// 	if (!copy_map(fp, game))
-// 		return (false);
-// 	if (!game->player)
-// 		return (game->error = MAP_NO_PLAYER, false);
-// 	ft_printf(
-// 		"%s%s | w: %d, h: %d%s\n", 
-// 		YEL, fp, game->map_size[0], game->map_size[1], RST
-// 	);
-// 	return (true);
-// }
+bool	parse_map(t_game *game)
+{
+	for (int i = 0; i < game->map_size[1]; i++)
+		ft_printf("%s\n", game->map[i]);
+	// if (!game->player)
+	// 	return (game->error = MAP_NO_PLAYER, false);
+	// ft_printf(
+	// 	"%s%s | w: %d, h: %d%s\n", 
+	// 	YEL, fp, game->map_size[0], game->map_size[1], RST
+	// );
+	return (true);
+}
 
 bool	get_map_dims(t_game *game, int fd)
 {
@@ -123,6 +123,5 @@ int	main(int argc, char **argv)
 	init_game(game, argv[1]);
 	ft_printf("map size: (%d, %d)\n", game->map_size[0], game->map_size[1]);
 	game->map = read_n_lines(argv[1], game->map_size[1]);
-	for (int i = 0; i < game->map_size[1]; i++)
-		ft_printf("row %d: %s\n", i, game->map[i]); 
+	parse_map(game);
 }
