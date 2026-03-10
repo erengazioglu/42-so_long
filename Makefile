@@ -44,6 +44,9 @@ OBJ_BONUS		:= $(SRC_BONUS:%.c=obj/%.o)
 
 all			: $(NAME) $(BONUS)
 
+test		: src/parse_map.c include/so_long.h 
+	$(CC) $(CFLAGS) src/parse_map.c $(LIBS) -o $@
+
 # # I wanted to include the MLX build inside my makefile,
 # # but it relinks so I have no option but to leave it out.
 #
