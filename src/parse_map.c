@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 19:05:00 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/10 11:10:45 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/10 11:16:57 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,5 +123,5 @@ int	main(int argc, char **argv)
 	ft_printf("map size: (%d, %d)\n", game->map_size[0], game->map_size[1]);
 	game->map = read_n_lines(argv[1], game->map_size[1]);
 	for (int i = 0; i < game->map_size[1]; i++)
-		ft_printf("%s\n", game->map[i]);
+		ft_printf("row %d: %s\n", i, game->map[i]);
 }

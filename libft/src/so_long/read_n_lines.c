@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 10:54:50 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/10 11:11:51 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/10 11:16:46 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ char	**read_n_lines(char *fp, int n)
 	}
 	if (n != 0)
 		return (cleanup(result), NULL);
+	line[ft_strlen(line) - 1] = '\0';
 	return (*result_cursor = line, result);
 }
