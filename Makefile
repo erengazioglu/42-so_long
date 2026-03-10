@@ -42,10 +42,16 @@ OBJ				:= $(SRC:%.c=obj/%.o)
 OBJ_MANDATORY	:= $(SRC_MANDATORY:%.c=obj/%.o)
 OBJ_BONUS		:= $(SRC_BONUS:%.c=obj/%.o)
 
+OBJ_TEST	:= \
+			obj/parse_map.o \
+			obj/init.o \
+			obj/check.o \
+			obj/console.o
+
 all			: $(NAME) $(BONUS)
 
-test		: obj/parse_map.o obj/init.o include/so_long.h libft/libft.a
-	$(CC) $(CFLAGS) obj/parse_map.o obj/init.o $(LIBS) -o $@
+test		: $(OBJ_TEST) include/so_long.h libft/libft.a
+	$(CC) $(CFLAGS) $(OBJ_TEST) $(LIBS) -o $@
 re_test		: clean all
 
 # # I wanted to include the MLX build inside my makefile,
