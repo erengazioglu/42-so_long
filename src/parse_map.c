@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 19:05:00 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/10 15:39:27 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/11 00:29:41 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,19 +74,45 @@
 // 	return (close(fd), true);
 // }
 
+static bool	parse_row(t_game *game, int y)
+{
+	char	*row;
+	int		pos[2];
+
+	row = game->map[y];
+	(pos[0] = 0, pos[1] = y);
+	ft_printf("parsing...\n");
+	while (pos[0] < game->map_size[0])
+	{
+		if (ft_strchr("CP", row[pos[0]]))
+		{
+			if (!create_obj(game, row[pos[0]], pos))
+				return (false);
+			row[pos[0]] = '0';
+		}
+		else if (row[pos[0]] == 'E')
+			(game->exit_pos[0] = pos[0], game->exit_pos[1] = pos[1]);
+		pos[0]++;
+	}
+	return (true);
+}
+
 bool	parse_map(t_game *game)
 {
-	for (int i = 0; i < game->map_size[1]; i++)
+	int	y;
+
+	y = 0;
+	while (y < game->map_size[1])
 	{
-		ft_printf("%s\n", game->map[i]);
-		check_row(game, game->map[i], i);
+		if (
+			!check_row(game, y)
+			|| !parse_row(game, y)
+		)
+			return (false);
+		y++;
 	}
-	// if (!game->player)
-	// 	return (game->error = MAP_NO_PLAYER, false);
-	// ft_printf(
-	// 	"%s%s | w: %d, h: %d%s\n", 
-	// 	YEL, fp, game->map_size[0], game->map_size[1], RST
-	// );
+	if (!game->player)
+		return (game->error = MAP_NO_PLAYER, false);
 	return (true);
 }
 
@@ -127,9 +153,17 @@ int	main(int argc, char **argv)
 	game = malloc(sizeof(t_game));
 	init_game(game, argv[1]);
 	ft_printf("map size: (%d, %d)\n", game->map_size[0], game->map_size[1]);
-	// if (game->map_size[1])
-	// game->map = read_n_lines(argv[1], game->map_size[1]);
-	// parse_map(game);
+	if (game->map_size[1])
+	game->map = read_n_lines(argv[1], game->map_size[1]);
+	if (!parse_map(game))
+		print_error(game);
+	else
+	{
+		ft_printf("%s", GRN);
+		for (int i = 0; i < game->map_size[1]; i++)
+			ft_printf("%s\n", game->map[i]);
+		ft_printf("%s", RST);
+	}
 	// if (game->error)
 	// 	print_error(game);
 }

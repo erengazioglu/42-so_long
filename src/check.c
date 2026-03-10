@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 00:58:39 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/10 15:16:11 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/11 00:29:08 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,14 @@
 // }
 
 
-bool	check_row(t_game *game, char *row, int y)
+bool	check_row(t_game *game, int y)
 {
-	int i;
+	int		i;
+	char	*row;
 
+	ft_printf("%shey! ", YEL);
+	row = game->map[y];
+	ft_printf("%s%s", row, RST);
 	if (ft_strlen(row) != (size_t) game->map_size[0])
 		return (game->error = MAP_INVALID_ROW_LENGTH, false);
 	if (row[0] != '1' || row[game->map_size[0] - 1] != '1')
@@ -70,6 +74,7 @@ bool	check_row(t_game *game, char *row, int y)
 			if (!ft_strchr("1\n", *(row++)))
 				return (game->error = MAP_INVALID_BOUNDARY, false);
 		}
+		ft_printf(" done\n");
 		return (true);
 	}
 	i = 0;
@@ -78,6 +83,7 @@ bool	check_row(t_game *game, char *row, int y)
 		if (!ft_strchr("10ECP\n", row[i++]))
 			return (game->error = MAP_INVALID_TILE, false);
 	}
+	ft_printf(" done\n");
 	return (true);
 }
 

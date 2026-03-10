@@ -46,7 +46,8 @@ OBJ_TEST	:= \
 			obj/parse_map.o \
 			obj/init.o \
 			obj/check.o \
-			obj/console.o
+			obj/console.o \
+			obj/objects.o
 
 all			: $(NAME) $(BONUS)
 

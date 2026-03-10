@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 18:50:03 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/10 14:09:44 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/10 20:27:26 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ void	end_game(t_game *game, bool win);
 void	crash(t_game *game);
 void	cleanup(t_game *game);
 bool	check_textures(t_game *game);
-bool	check_row(t_game *game, char *row, int y);
+bool	check_row(t_game *game, int y);
 bool	check_exit_reachable(t_game *game);
 bool	check_args(int argc, char **argv);
 t_dijk	*dijkstra_init(t_game *game);
