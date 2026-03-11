@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 23:57:58 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/11 15:08:00 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/11 15:23:35 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,10 @@ t_key	get_key_input(int keycode)
 	else if (keycode == 65362 || keycode == 119)
 		return (KEY_N);
 	return (KEY_NONE);
+}
+
+void	set_vector2(int *pos, int x, int y)
+{
+	pos[0] = x;
+	pos[1] = y;
 }

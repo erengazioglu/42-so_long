@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 18:05:31 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/09 18:50:48 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/11 15:26:53 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 bool	ft_str_endswith(char *str, char *test)
 {
 	int	len;
-	
+
 	len = ft_strlen(test);
 	if (ft_strlen(str) < ft_strlen(test))
 		return (false);

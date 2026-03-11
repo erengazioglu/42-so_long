@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 19:05:00 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/11 14:01:15 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/11 15:22:05 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static bool	parse_row(t_game *game, int y)
 	int		pos[2];
 
 	row = game->map[y];
-	(pos[0] = 0, pos[1] = y);
+	set_vector2(pos, 0, y);
 	while (pos[0] < game->map_size[0])
 	{
 		if (ft_strchr("CP<>XWLK", row[pos[0]]))
@@ -39,7 +39,7 @@ static bool	parse_row(t_game *game, int y)
 		{
 			if (game->exit_pos[0] != -1)
 				return (game->error = MAP_DUPLICATE, false);
-			(game->exit_pos[0] = pos[0], game->exit_pos[1] = pos[1]);
+			set_vector2(game->exit_pos, pos[0], pos[1]);
 		}
 		pos[0]++;
 	}

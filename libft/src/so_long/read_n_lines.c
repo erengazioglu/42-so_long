@@ -6,11 +6,21 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 10:54:50 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/11 13:56:14 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/11 15:34:17 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/libft.h"
+
+static void	fast_forward(char *line, int fd)
+{
+	while (line)
+	{
+		line = get_next_line(fd);
+		free(line);
+	}
+	close(fd);
+}
 
 static void	cleanup(char **lines)
 {
@@ -24,13 +34,18 @@ static void	cleanup(char **lines)
 
 static char	*init(char *fp, int n, int *fd, char ***result)
 {
+	char	*line;
+
 	*fd = open(fp, O_RDONLY);
 	if (*fd == -1)
 		return (NULL);
 	*result = malloc(n * sizeof(char *));
 	if (!(*result))
 		return (close(*fd), NULL);
-	return (get_next_line(*fd));
+	line = get_next_line(*fd);
+	if (!line)
+		return (free(result), close(*fd), NULL);
+	return (line);
 }
 
 char	**read_n_lines(char *fp, int n)
@@ -41,8 +56,6 @@ char	**read_n_lines(char *fp, int n)
 	char	**result_cursor;
 
 	line = init(fp, n, &fd, &result);
-	if (!line)
-		return (free(result), close(fd), NULL);
 	result_cursor = result;
 	while (line && --n > 0)
 	{
@@ -56,11 +69,5 @@ char	**read_n_lines(char *fp, int n)
 	if (line[ft_strlen(line) - 1] == '\n')
 		line[ft_strlen(line) - 1] = '\0';
 	*result_cursor = line;
-	while (line)
-	{
-		line = get_next_line(fd);
-		free(line);
-	}
-	close(fd);
-	return (result);
+	return (fast_forward(line, fd), result);
 }

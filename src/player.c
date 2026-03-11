@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 00:42:29 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/11 14:18:22 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/11 15:22:49 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	end_game(t_game *game, bool win)
 	if (win && game->coins)
 	{
 		render_text(game, "You haven't collected all the coins yet!", MLX_BLUE);
-		return;
+		return ;
 	}
 	game->dead = true;
 	mlx_put_image_to_window(
@@ -25,11 +25,13 @@ void	end_game(t_game *game, bool win)
 		game->textures->empty,
 		game->player->pos[0] * GRID_SIZE * GRID_MULT,
 		game->player->pos[1] * GRID_SIZE * GRID_MULT
-	);
+		);
 	if (win)
-		render_text(game, "You win the game! Press any key to exit.", MLX_GREEN);
+		render_text(game, "You win the game! Press any key to exit.",
+			MLX_GREEN);
 	else
-		render_text(game, "A dead player is you! Press any key to exit.", MLX_RED);
+		render_text(game, "A dead player is you! Press any key to exit.",
+			MLX_RED);
 }
 
 void	pick_up(t_game *game, t_obj *obj, int dir[2])
@@ -72,7 +74,6 @@ void	interact(t_game *game, t_obj *obj, int dir[2])
 		else
 			render_text(game, "You need a weapon for that.", MLX_RED);
 	}
-	 
 }
 
 void	player_action(t_game *game, t_key key)
