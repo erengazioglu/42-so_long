@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 00:55:41 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/11 09:47:37 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/11 11:53:18 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ bool	init_game(t_game *game, char *mapfile)
 	game->moves = 0;
 	game->score = 0;
 	game->keys = 0;
+	game->coins = 0;
 	game->weapon = false;
 	game->dead = false;
 	fd = open(mapfile, O_RDONLY);

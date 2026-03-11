@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 18:50:03 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/11 09:45:55 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/11 12:08:23 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define MLX_BLACK	0x00000000
 # define MLX_RED	0x00DD6060
 # define MLX_GREEN	0x0090DD80
+# define MLX_BLUE	0x009080DD
 
 # define GRID_SIZE	16
 # ifndef GRID_MULT
@@ -105,12 +106,14 @@ typedef struct s_game
 {
 	void		*ctx;
 	void		*win;
+	bool		footer_text;
 	int			map_size[2];
 	int			exit_pos[2];
 	int			last_update;
 	int			moves;
 	int			score;
 	int			keys;
+	int			coins;
 	bool		weapon;
 	bool		dead;
 	char		**map;
@@ -130,6 +133,7 @@ void	render_cell(t_game *game, int x, int y);
 void	render_map(t_game *game);
 void	render_obj(t_game *game, t_obj *obj, bool advance_frame);
 void	render_objs(t_game *game);
+void	render_text(t_game *game, char *str, int color);
 bool	render_footer(t_game *game);
 t_obj	*create_obj(t_game *game, char type, int pos[2]);
 t_anim	*create_anim(t_game *game, char *name, int frames);

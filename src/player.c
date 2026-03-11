@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 00:42:29 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/11 11:49:14 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/11 12:12:47 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 void	end_game(t_game *game, bool win)
 {
+	if (game->coins)
+	{
+		render_text(game, "You haven't collected all the coins yet!", MLX_BLUE);
+		return;
+	}
 	game->dead = true;
 	mlx_put_image_to_window(
 		game->ctx, game->win,
@@ -22,25 +27,18 @@ void	end_game(t_game *game, bool win)
 		game->player->pos[1] * GRID_SIZE * GRID_MULT
 	);
 	if (win)
-		mlx_string_put(game->ctx, game->win,
-			16 + GRID_MULT * GRID_SIZE * 3,
-			(game->map_size[1]) * GRID_MULT * GRID_SIZE + 16,
-			MLX_GREEN,
-			"You win the game! Press any key to exit."
-		);
+		render_text(game, "You win the game! Press any key to exit.", MLX_GREEN);
 	else
-		mlx_string_put(game->ctx, game->win,
-		16 + GRID_MULT * GRID_SIZE * 3,
-			(game->map_size[1]) * GRID_MULT * GRID_SIZE + 16,
-			MLX_RED,
-			"A dead player is you! Press any key to exit."
-		);
+		render_text(game, "You win the game! Press any key to exit.", MLX_RED);
 }
 
 void	pick_up(t_game *game, t_obj *obj, int dir[2])
 {
 		if (obj->type == 'C')
+		{
 			game->score += 5;
+			game->coins -= 1;
+		}
 		else if (obj->type == 'W')
 		{
 			game->player->anim = game->textures->player_weapon;
@@ -57,17 +55,11 @@ void	interact(t_game *game, t_obj *obj, int dir[2])
 	if (ft_strchr("CWK", obj->type))
 		pick_up(game, obj, dir);
 	else if (obj->type == 'L' && game->keys)
-	{
-		destroy_obj(game, obj);
-		game->keys -= 1;
-	}
+		(destroy_obj(game, obj), game->keys -= 1);
 	else if (ft_strchr("X>v<^", obj->type))
 	{
 		if (game->weapon)
-		{
-			destroy_obj(game, obj);
-			game->score += 1;
-		}
+			(destroy_obj(game, obj), game->score += 1);
 		else
 		{
 			game->moves++;

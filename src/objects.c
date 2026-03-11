@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 02:14:34 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/11 00:34:36 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/11 12:11:48 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,7 @@ t_obj	*create_obj(t_game *game, char type, int pos[2])
 		return (game->error = MEM_MALLOC, NULL);
 	new_obj->frame = 0;
 	new_obj->type = type;
-	new_obj->pos[0] = pos[0];
-	new_obj->pos[1] = pos[1];
+	(new_obj->pos[0] = pos[0], new_obj->pos[1] = pos[1]);
 	set_obj_anim(game, new_obj, type);
 	if (type == 'P')
 		game->player = new_obj;
@@ -87,6 +86,11 @@ t_obj	*create_obj(t_game *game, char type, int pos[2])
 		if (!node)
 			return (game->error = MEM_MALLOC, NULL);
 		ft_lstadd_back(&(game->objs), node);
+		if (type == 'C')
+		{
+			game->coins++;
+			ft_printf("coin found: total coins %d\n", game->coins);
+		}
 	}
 	return (new_obj);
 }

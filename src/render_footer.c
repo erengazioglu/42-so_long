@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 09:24:24 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/09 14:57:39 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/11 12:10:36 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ static void	clear_square(t_game *game, int x, int y, int size[2])
 {
 	int	x_temp;
 
-	// start from x, y
-	// paint x+1, y | x+2, y | so on 
 	while (size[1] > 0)
 	{
 		x_temp = size[0];
@@ -26,6 +24,26 @@ static void	clear_square(t_game *game, int x, int y, int size[2])
 				x + x_temp--, y + size[1], MLX_BLACK);
 		size[1]--;
 	}
+}
+
+void	render_text(t_game *game, char *str, int color)
+{
+	int	clear_size[2];
+
+	clear_size[0] = 1000;
+	clear_size[1] = 24;
+	clear_square(game, 
+		16 + GRID_MULT * GRID_SIZE * 3,
+		(game->map_size[1]) * GRID_MULT * GRID_SIZE + 1,
+		clear_size
+	);
+	mlx_string_put(
+		game->ctx, game->win,
+		16 + GRID_MULT * GRID_SIZE * 3,
+		(game->map_size[1]) * GRID_MULT * GRID_SIZE + 16,
+		color, str
+		
+	);
 }
 
 bool	render_footer(t_game *game)
