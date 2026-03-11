@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 00:55:41 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/11 00:35:03 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/11 09:47:37 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ t_game	*new_game(char *mapfile)
 		|| !init_textures(game) 
 		|| !init_animations(game)
 		|| !check_textures(game)
+		|| !copy_map(game, mapfile)
 		|| !parse_map(game)
 		|| !check_exit_reachable(game)
 		|| !init_window(game)

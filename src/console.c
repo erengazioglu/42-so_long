@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 00:40:24 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/10 10:43:10 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/11 09:51:10 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	print_map_error(e_err err)
 	else if (err == MAP_INVALID_TILE)
 		ft_printf("Map file has an invalid character.%s\n", RST);
 	else if (err == MAP_NL_ENDING)
-		ft_printf("Unexpected number of new lines before EOF" RST);
+		ft_printf("Unexpected number of new lines before EOF.%s\n" RST);
 }
 
 void	print_error(t_game *game)
@@ -45,6 +45,10 @@ void	print_error(t_game *game)
 	err = game->error;
 	if (err == MEM_MALLOC)
 		ft_printf("Memory allocation failed.%s\n", RST);
+	else if (err == MLX_INIT_ERROR)
+		ft_printf("MiniLibX failed to initialize.%s\n", RST);
+	else if (err == MLX_INIT_ERROR)
+		ft_printf("MiniLibX failed to create texture.%s\n", RST);
 	else
 		print_map_error(err);
 }

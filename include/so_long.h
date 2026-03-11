@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 18:50:03 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/10 20:27:26 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/11 09:45:55 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,7 @@ void	destroy_obj(t_game *game, t_obj *obj);
 void	end_game(t_game *game, bool win);
 void	crash(t_game *game);
 void	cleanup(t_game *game);
+bool	copy_map(t_game *game, char *fp);
 bool	check_textures(t_game *game);
 bool	check_row(t_game *game, int y);
 bool	check_exit_reachable(t_game *game);

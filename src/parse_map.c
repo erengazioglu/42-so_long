@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 19:05:00 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/11 00:36:16 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/11 09:45:41 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,34 +45,13 @@
 // 	return (row);
 // }
 
-// static bool	copy_map(char *fp, t_game *game)
-// {
-// 	int		fd;
-// 	int		y;
-// 	char	*line;
-// 	char	**map_ptr;
-
-// 	game->map = malloc(game->map_size[1] * sizeof(char *));
-// 	if (!game->map)
-// 		return (game->error = MEM_MALLOC, false);
-// 	fd = open(fp, O_RDONLY);
-// 	if (fd == -1)
-// 		return (game->error = MAP_INVALID_FILEPATH, false);
-// 	map_ptr = game->map;
-// 	line = get_next_line(fd);
-// 	if (!line)
-// 		return (game->error = MAP_READ_ERROR, false);
-// 	y = 0;
-// 	while (line)
-// 	{
-// 		*map_ptr = parse_row(game, line, y++);
-// 		if (!(*map_ptr))
-// 			return (free(line), false);
-// 		map_ptr++;
-// 		line = get_next_line(fd);
-// 	}
-// 	return (close(fd), true);
-// }
+bool	copy_map(t_game *game, char *fp)
+{
+	game->map = read_n_lines(fp, game->map_size[1]);
+	if (!game->map)
+		return (game->error = MAP_READ_ERROR, false);
+	return (true);
+}
 
 static bool	parse_row(t_game *game, int y)
 {
