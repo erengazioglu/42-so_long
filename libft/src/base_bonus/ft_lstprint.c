@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 14:51:19 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/01/24 14:54:37 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/11 14:28:16 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
 
 void	ft_lstprint(t_list *lst)
 {
-	t_list *node;
+	t_list	*node;
 
 	node = lst;
 	if (!node)
 		ft_printf("%sList is empty/null.%s\n", YEL, RST);
 	while (node)
 	{
-		ft_printf("Node: %p || Prev %p, Next %p\n", node, node->prev, node->next);
+		ft_printf("Node: %p || Prev %p, Next %p\n",
+			node, node->prev, node->next);
 		node = node->next;
 	}
 }

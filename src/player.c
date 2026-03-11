@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 00:42:29 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/11 12:46:24 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/11 14:18:22 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	interact(t_game *game, t_obj *obj, int dir[2])
 	 
 }
 
-void	player_action(t_game *game, e_key key)
+void	player_action(t_game *game, t_key key)
 {
 	int		dir[2];
 	t_obj	*obj;

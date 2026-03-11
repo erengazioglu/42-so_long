@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 18:50:03 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/11 12:23:03 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/11 15:07:18 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,25 +32,24 @@
 # define REFRESH_RATE 10
 # define BTN_EXIT	17
 
-typedef enum
+typedef enum e_key
 {
 	KEY_NONE,
 	KEY_QUIT,
-	KEY_E, 		// 2
-	KEY_S, 		// 3
-	KEY_W, 		// 4
-	KEY_N		// 5
-}	e_key;
+	KEY_E,
+	KEY_S,
+	KEY_W,
+	KEY_N
+}	t_key;
 
-
-typedef enum
+typedef enum e_dijkstate
 {
 	DIJK_NO_SPREAD,
 	DIJK_SPREAD,
 	DIJK_FOUND_GOAL
-}	e_dijkstate;
+}	t_dijkstate;
 
-typedef enum
+typedef enum e_err
 {
 	NO_ERROR,
 	MAP_INVALID_FILEPATH,
@@ -66,12 +65,12 @@ typedef enum
 	MLX_INIT_ERROR,
 	MLX_TEXTURE_ERROR,
 	MEM_MALLOC
-}	e_err;
+}	t_err;
 
 typedef struct s_dijk
 {
 	char		**map;
-	e_dijkstate	state;
+	t_dijkstate	state;
 }	t_dijk;
 
 typedef struct s_anim
@@ -118,7 +117,7 @@ typedef struct s_game
 	bool		weapon;
 	bool		dead;
 	char		**map;
-	e_err		error;
+	t_err		error;
 	t_textures	*textures;
 	t_obj		*player;
 	t_list		*objs;
@@ -126,7 +125,6 @@ typedef struct s_game
 
 bool	parse_map(t_game *game);
 t_game	*new_game(char *map);
-void	quit_game(t_game *game);
 void	print_map(char **map, int map_size[2]);
 void	print_objs(t_game *game);
 void	print_error(t_game *game);
@@ -139,14 +137,13 @@ bool	render_footer(t_game *game);
 t_obj	*create_obj(t_game *game, char type, int pos[2]);
 t_anim	*create_anim(t_game *game, char *name, int frames);
 long	current_time_ms(void);
-void	player_action(t_game *game, e_key key);
-e_key	get_key_input(int keycode);
+void	player_action(t_game *game, t_key key);
+t_key	get_key_input(int keycode);
 bool	get_map_dims(t_game *game, int fd);
-void	get_move_dir(e_key key, int *dir);
+void	get_move_dir(t_key key, int *dir);
 void	get_patrol_dir(char type, int *dir);
 t_obj	*get_obj(t_game *game, int pos[2]);
 char	get_tile(t_game *game, int x, int y);
-void	move_patrol(t_game *game, t_obj *obj, int *dir);
 void	move_objects(t_game *game);
 void	move_player(t_game *game, int *dir);
 void	destroy_obj(t_game *game, t_obj *obj);
@@ -161,8 +158,5 @@ bool	check_args(int argc, char **argv);
 t_dijk	*dijkstra_init(t_game *game);
 void	dijkstra_step(t_game *game, t_dijk *dijk);
 void	dijkstra_cleanup(t_game *game, t_dijk *dijk);
-
-// test only, delete later?
-bool	init_game(t_game *game, char *mapfile);
 
 #endif

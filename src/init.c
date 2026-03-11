@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 00:55:41 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/11 11:53:18 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/11 14:51:58 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 bool	init_window(t_game *game)
 {
 	game->win = mlx_new_window(
-		game->ctx,
-		game->map_size[0] * GRID_SIZE * GRID_MULT,
-		game->map_size[1] * GRID_SIZE * GRID_MULT + 24,
-		"So long!"
-	);
+			game->ctx,
+			game->map_size[0] * GRID_SIZE * GRID_MULT,
+			game->map_size[1] * GRID_SIZE * GRID_MULT + 24,
+			"So long!"
+			);
 	if (!game->win)
 		return (game->error = MLX_INIT_ERROR, false);
 	render_map(game);
@@ -27,28 +27,27 @@ bool	init_window(t_game *game)
 		16,
 		(game->map_size[1]) * GRID_MULT * GRID_SIZE + 16,
 		MLX_WHITE,
-		"moves:"
-	);
+		"moves:");
 	return (true);
 }
 
 bool	init_textures(t_game *game)
 {
 	int	w;
-	int h;
+	int	h;
 
 	game->textures = malloc(sizeof(t_textures));
 	if (!game->textures)
 		return (game->error = MEM_MALLOC, false);
 	game->textures->empty = mlx_xpm_file_to_image(
-		game->ctx, "assets/textures/empty1x3.xpm", &w, &h
-	);
+			game->ctx, "assets/textures/empty1x3.xpm", &w, &h
+			);
 	game->textures->wall = mlx_xpm_file_to_image(
-		game->ctx, "assets/textures/wall2x3-00.xpm", &w, &h
-	);
+			game->ctx, "assets/textures/wall2x3-00.xpm", &w, &h
+			);
 	game->textures->exit = mlx_xpm_file_to_image(
-		game->ctx, "assets/textures/exit1x3.xpm", &w, &h
-	);
+			game->ctx, "assets/textures/exit1x3.xpm", &w, &h
+			);
 	return (true);
 }
 
@@ -101,7 +100,7 @@ t_game	*new_game(char *mapfile)
 		return (NULL);
 	if (
 		!init_game(game, mapfile)
-		|| !init_textures(game) 
+		|| !init_textures(game)
 		|| !init_animations(game)
 		|| !check_textures(game)
 		|| !copy_map(game, mapfile)

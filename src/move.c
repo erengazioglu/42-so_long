@@ -6,13 +6,13 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 23:45:53 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/09 14:45:02 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/11 15:07:39 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void	move_patrol(t_game *game, t_obj *obj, int *dir)
+static void	move_patrol(t_game *game, t_obj *obj, int *dir)
 {
 	char	tile;
 
@@ -27,7 +27,6 @@ void	move_patrol(t_game *game, t_obj *obj, int *dir)
 	if (game->player->pos[0] == obj->pos[0]
 		&& game->player->pos[1] == obj->pos[1])
 		end_game(game, false);
-
 }
 
 void	move_objects(t_game *game)
@@ -43,7 +42,8 @@ void	move_objects(t_game *game)
 		if (ft_strchr(">v<^", obj->type))
 		{
 			get_patrol_dir(obj->type, dir);
-			if (get_tile(game, obj->pos[0] + dir[0], obj->pos[1] + dir[1]) == '1')
+			if (get_tile(game, obj->pos[0] + dir[0],
+					obj->pos[1] + dir[1]) == '1')
 			{
 				obj->type = ">v<^"[(ft_strfind(">v<^", obj->type) + 2) % 4];
 				dir[0] *= -1;

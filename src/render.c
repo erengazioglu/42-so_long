@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 19:42:51 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/02/06 00:23:32 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/11 14:46:12 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	render_cell(t_game *game, int x, int y)
 {
 	int	px;
-	int py;
+	int	py;
 
 	px = x * GRID_SIZE * GRID_MULT;
 	py = y * GRID_SIZE * GRID_MULT;
@@ -56,13 +56,13 @@ void	render_obj(t_game *game, t_obj *obj, bool advance_frame)
 		game->textures->empty,
 		obj->pos[0] * GRID_SIZE * GRID_MULT,
 		obj->pos[1] * GRID_SIZE * GRID_MULT
-	);
+		);
 	mlx_put_image_to_window(
 		game->ctx, game->win,
 		ft_lstget(obj->anim->textures, obj->frame),
 		obj->pos[0] * GRID_SIZE * GRID_MULT,
 		obj->pos[1] * GRID_SIZE * GRID_MULT
-	);
+		);
 	if (advance_frame)
 		obj->frame = (obj->frame + 1) % obj->anim->length;
 }
@@ -70,7 +70,7 @@ void	render_obj(t_game *game, t_obj *obj, bool advance_frame)
 void	render_objs(t_game *game)
 {
 	t_list	*obj;
-	
+
 	if (!game->dead)
 		render_obj(game, game->player, true);
 	obj = game->objs;

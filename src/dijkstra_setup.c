@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 12:09:59 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/09 20:38:10 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/11 14:37:45 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	dijkstra_cleanup(t_game *game, t_dijk *dijk)
 {
 	int	i;
-	
+
 	i = 0;
 	while (i < game->map_size[1])
 		free(dijk->map[i++]);
@@ -55,7 +55,7 @@ static bool	dijkstra_create_map(t_game *game, t_dijk *dijk)
 {
 	int		y;
 
-	dijk->map = malloc(game->map_size[1] * sizeof(char *)); 
+	dijk->map = malloc(game->map_size[1] * sizeof(char *));
 	if (!dijk->map)
 		return (game->error = MEM_MALLOC, false);
 	y = 0;
@@ -70,7 +70,7 @@ static bool	dijkstra_create_map(t_game *game, t_dijk *dijk)
 t_dijk	*dijkstra_init(t_game *game)
 {
 	t_dijk	*dijk;
-	
+
 	dijk = malloc(sizeof(t_dijk));
 	if (!dijk)
 		return (game->error = MEM_MALLOC, NULL);

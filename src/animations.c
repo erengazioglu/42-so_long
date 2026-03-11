@@ -6,19 +6,18 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 15:48:40 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/09 20:52:05 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/11 14:45:59 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-// t_anim	*init_anim(t_game *game,)
-
 static char	*build_texture_fp(char *name)
 {
 	char	*fp;
 
-	fp = ft_calloc(ft_strlen("assets/textures/x3.xpm") + ft_strlen(name) + 1, 1);
+	fp = ft_calloc(ft_strlen("assets/textures/x3.xpm")
+			+ ft_strlen(name) + 1, 1);
 	if (!fp)
 		return (NULL);
 	ft_strcat(fp, "assets/textures/");
@@ -32,7 +31,8 @@ static char	*build_anim_fp(char *name, int frame)
 	char	*fp;
 	char	*frame_str;
 
-	fp = ft_calloc(ft_strlen("assets/textures/x3-00.xpm") + ft_strlen(name) + 1, 1);
+	fp = ft_calloc(ft_strlen("assets/textures/x3-00.xpm")
+			+ ft_strlen(name) + 1, 1);
 	if (!fp)
 		return (NULL);
 	ft_strcat(fp, "assets/textures/");
@@ -53,7 +53,7 @@ bool	add_texture_to_anim(t_game *game, t_anim *anim, char *fp, int *dims)
 {
 	void	*texture;
 	t_list	*node;
-	
+
 	texture = mlx_xpm_file_to_image(game->ctx, fp, dims, dims + 1);
 	if (!texture)
 		return (game->error = MLX_TEXTURE_ERROR, false);
@@ -91,4 +91,3 @@ t_anim	*create_anim(t_game *game, char *name, int frames)
 	}
 	return (anim);
 }
-

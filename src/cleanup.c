@@ -6,23 +6,23 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 17:14:30 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/09 21:25:23 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/11 14:32:27 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void	free_map(t_game *game)
+static void	free_map(t_game *game)
 {
 	int	i;
-	
+
 	i = 0;
 	while (i < game->map_size[1] && game->map[i])
 		free(game->map[i++]);
 	free(game->map);
 }
 
-void	free_objects(t_game *game)
+static void	free_objects(t_game *game)
 {
 	t_list	*node;
 	t_list	*temp;
@@ -39,7 +39,7 @@ void	free_objects(t_game *game)
 	}
 }
 
-void	free_animation(t_game *game, t_anim *anim)
+static void	free_animation(t_game *game, t_anim *anim)
 {
 	t_list	*node;
 	t_list	*temp;
@@ -55,7 +55,7 @@ void	free_animation(t_game *game, t_anim *anim)
 	free(anim);
 }
 
-void	free_textures(t_game *game)
+static void	free_textures(t_game *game)
 {
 	mlx_destroy_image(game->ctx, game->textures->empty);
 	mlx_destroy_image(game->ctx, game->textures->wall);
@@ -71,15 +71,6 @@ void	free_textures(t_game *game)
 	free(game->textures);
 }
 
-void	free_mlx(t_game *game)
-{
-	if (game->win)
-		mlx_destroy_window(game->ctx, game->win);
-	if (game->ctx)
-		mlx_destroy_display(game->ctx);
-	free(game->ctx);
-}
-
 void	cleanup(t_game *game)
 {
 	if (!game)
@@ -89,6 +80,10 @@ void	cleanup(t_game *game)
 	free_objects(game);
 	if (game->map)
 		free_map(game);
-	free_mlx(game);
+	if (game->win)
+		mlx_destroy_window(game->ctx, game->win);
+	if (game->ctx)
+		mlx_destroy_display(game->ctx);
+	free(game->ctx);
 	free(game);
 }

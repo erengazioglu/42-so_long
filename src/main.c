@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 17:50:53 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/11 12:37:41 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/11 14:54:51 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,7 @@ void	crash(t_game *game)
 	exit(1);
 }
 
-void	quit_game(t_game *game)
-{
-	cleanup(game);
-	exit(0);
-}
-
-int	process(void *param)
+static int	process(void *param)
 {
 	t_game	*game;
 	long	time;
@@ -41,28 +35,31 @@ int	process(void *param)
 	return (0);
 }
 
-int	handle_keypress(int keycode, void *param)
+static int	handle_keypress(int keycode, void *param)
 {
 	t_game	*game;
-	e_key	key;
-	
+	t_key	key;
+
 	game = (t_game *) param;
 	key = get_key_input(keycode);
 	if (key == KEY_QUIT || game->dead)
-		quit_game(game);
+	{
+		cleanup(game);
+		exit(0);
+	}
 	else if (key != KEY_NONE)
 		player_action(game, key);
 	render_footer(game);
 	return (0);
 }
 
-int	handle_close(void *param)
+static int	handle_close(void *param)
 {
-	t_game *game;
+	t_game	*game;
 
 	game = (t_game *) param;
-	quit_game(game);
-	return (0);
+	cleanup(game);
+	exit(0);
 }
 
 int	main(int argc, char **argv)

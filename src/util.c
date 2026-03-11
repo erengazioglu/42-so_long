@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 23:57:58 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/09 18:07:17 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/11 15:08:00 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	get_patrol_dir(char type, int *dir)
 {
 	int	i;
-	
+
 	dir[0] = 0;
 	dir[1] = 0;
 	i = ft_strfind(">v<^", type);
@@ -25,7 +25,7 @@ void	get_patrol_dir(char type, int *dir)
 		dir[0] = 1 - (i > 1) * 2;
 }
 
-void	get_move_dir(e_key key, int *dir)
+void	get_move_dir(t_key key, int *dir)
 {
 	key -= 2;
 	dir[0] = 0;
@@ -41,7 +41,7 @@ char	get_tile(t_game *game, int x, int y)
 	return (game->map[y][x]);
 }
 
-e_key	get_key_input(int keycode)
+t_key	get_key_input(int keycode)
 {
 	if (keycode == 65307)
 		return (KEY_QUIT);
