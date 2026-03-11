@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 18:50:03 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/11 12:08:23 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/11 12:23:03 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef enum
 	KEY_W, 		// 4
 	KEY_N		// 5
 }	e_key;
+
 
 typedef enum
 {

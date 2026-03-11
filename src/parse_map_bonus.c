@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 19:05:00 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/11 12:19:44 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/11 12:22:56 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,33 +87,3 @@ bool	get_map_dims(t_game *game, int fd)
 	}
 	return (close(fd), true);
 }
-
-
-// static char	*parse_row(t_game *game, char *row, int y)
-// {
-// 	int	i;
-// 	int	pos[2];
-
-// 	if (!check_row(game, row, y))
-// 		return (NULL);
-// 	pos[0] = 0;
-// 	pos[1] = y;
-// 	i = 0;
-// 	while (row[i])
-// 	{
-// 		if (ft_strchr("CP<>XWLK", row[i]))
-// 		{
-// 			if (!create_obj(game, row[i], pos))
-// 				return (NULL);
-// 			row[i] = '0';
-// 		}
-// 		else if (row[i] == 'E')
-// 		{
-// 			game->exit_pos[0] = pos[0];
-// 			game->exit_pos[1] = pos[1];
-// 		}
-// 		pos[0] += 1;
-// 		i++;
-// 	}
-// 	return (row);
-// }
