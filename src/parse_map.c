@@ -6,44 +6,11 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 19:05:00 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/11 09:45:41 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/11 12:18:15 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-
-
-// 	game->map = 
-// }
-
-// static char	*parse_row(t_game *game, char *row, int y)
-// {
-// 	int	i;
-// 	int	pos[2];
-
-// 	if (!check_row(game, row, y))
-// 		return (NULL);
-// 	pos[0] = 0;
-// 	pos[1] = y;
-// 	i = 0;
-// 	while (row[i])
-// 	{
-// 		if (ft_strchr("CP", row[i]))
-// 		{
-// 			if (!create_obj(game, row[i], pos))
-// 				return (NULL);
-// 			row[i] = '0';
-// 		}
-// 		else if (row[i] == 'E')
-// 		{
-// 			game->exit_pos[0] = pos[0];
-// 			game->exit_pos[1] = pos[1];
-// 		}
-// 		pos[0] += 1;
-// 		i++;
-// 	}
-// 	return (row);
-// }
 
 bool	copy_map(t_game *game, char *fp)
 {
@@ -60,7 +27,6 @@ static bool	parse_row(t_game *game, int y)
 
 	row = game->map[y];
 	(pos[0] = 0, pos[1] = y);
-	ft_printf("parsing...\n");
 	while (pos[0] < game->map_size[0])
 	{
 		if (ft_strchr("CP", row[pos[0]]))
@@ -121,28 +87,3 @@ bool	get_map_dims(t_game *game, int fd)
 	}
 	return (close(fd), true);
 }
-
-// int	main(int argc, char **argv)
-// {
-// 	t_game	*game;
-
-// 	ft_printf("RUNNING %s\n", argv[1]);
-// 	if (argc != 2)
-// 		return (1);
-// 	game = malloc(sizeof(t_game));
-// 	init_game(game, argv[1]);
-// 	ft_printf("map size: (%d, %d)\n", game->map_size[0], game->map_size[1]);
-// 	if (game->map_size[1])
-// 	game->map = read_n_lines(argv[1], game->map_size[1]);
-// 	if (!parse_map(game))
-// 		print_error(game);
-// 	else
-// 	{
-// 		ft_printf("%s", GRN);
-// 		for (int i = 0; i < game->map_size[1]; i++)
-// 			ft_printf("%s\n", game->map[i]);
-// 		ft_printf("%s", RST);
-// 	}
-// 	// if (game->error)
-// 	// 	print_error(game);
-// }

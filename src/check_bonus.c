@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 00:58:39 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/09 20:36:35 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/11 12:16:52 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,8 @@ bool	check_args(int argc , char **argv)
 
 bool	check_exit_reachable(t_game *game)
 {
-	int		*src;
-	int		*dst;
 	t_dijk	*dijk;
 
-	src = game->player->pos;
-	dst = game->exit_pos;
-	ft_printf("finding valid path (%d, %d)->(%d, %d)\n",
-		src[0], src[1], dst[0], dst[1]
-	);
 	dijk = dijkstra_init(game);
 	print_map(dijk->map, game->map_size);
 	if (!dijk)
@@ -58,14 +51,13 @@ bool	check_exit_reachable(t_game *game)
 }
 
 
-bool	check_row(t_game *game, char *row, int y)
+bool	check_row(t_game *game, int y)
 {
-	int i;
+	int		i;
+	char	*row;
 
-	if (
-		ft_strlen(row) != 
-		(size_t) game->map_size[0] + (y != game->map_size[1] - 1)
-	)
+	row = game->map[y];
+	if (ft_strlen(row) != (size_t) game->map_size[0])
 		return (game->error = MAP_INVALID_ROW_LENGTH, false);
 	if (row[0] != '1' || row[game->map_size[0] - 1] != '1')
 		return (game->error = MAP_INVALID_BOUNDARY, false);
@@ -81,7 +73,7 @@ bool	check_row(t_game *game, char *row, int y)
 	i = 0;
 	while (row[i])
 	{
-		if (!ft_strchr("10ECP<>XWLK\n", row[i++]))
+		if (!ft_strchr("10ECP<>XWLK", row[i++]))
 			return (game->error = MAP_INVALID_TILE, false);
 	}
 	return (true);
