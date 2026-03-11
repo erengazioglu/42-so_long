@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 00:42:29 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/09 15:02:13 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/11 11:49:14 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	pick_up(t_game *game, t_obj *obj, int dir[2])
 		else
 			game->keys += 1;
 		destroy_obj(game, obj);
-		game->moves++;
 		move_player(game, dir);
 }
 
