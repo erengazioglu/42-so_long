@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 19:05:00 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/11 12:22:56 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/11 14:01:15 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,11 @@ static bool	parse_row(t_game *game, int y)
 			row[pos[0]] = '0';
 		}
 		else if (row[pos[0]] == 'E')
+		{
+			if (game->exit_pos[0] != -1)
+				return (game->error = MAP_DUPLICATE, false);
 			(game->exit_pos[0] = pos[0], game->exit_pos[1] = pos[1]);
+		}
 		pos[0]++;
 	}
 	return (true);
