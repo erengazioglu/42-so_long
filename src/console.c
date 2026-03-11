@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 00:40:24 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/11 14:50:56 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/11 16:01:51 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	print_map_error(t_err err)
 		ft_printf("Map file has an invalid character.%s\n", RST);
 	else if (err == MAP_NL_ENDING)
 		ft_printf("Unexpected number of new lines before EOF.%s\n" RST);
+	else if (err == MAP_NO_COINS)
+		ft_printf("Map has no collectibles in it.%s\n", RST);
 }
 
 void	print_error(t_game *game)

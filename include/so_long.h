@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 18:50:03 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/11 15:12:26 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/11 16:01:16 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef enum e_err
 	MAP_NO_PLAYER,
 	MAP_DUPLICATE,
 	MAP_NL_ENDING,
+	MAP_NO_COINS,
 	MLX_INIT_ERROR,
 	MLX_TEXTURE_ERROR,
 	MEM_MALLOC

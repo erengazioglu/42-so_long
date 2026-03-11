@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 19:05:00 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/11 15:21:48 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/11 16:01:05 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ bool	parse_map(t_game *game)
 	}
 	if (!game->player)
 		return (game->error = MAP_NO_PLAYER, false);
+	if (!game->coins)
+		return (game->error = MAP_NO_COINS, false);
 	return (true);
 }
 
