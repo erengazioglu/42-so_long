@@ -115,11 +115,18 @@ The game object has an `error` variable (enum) that holds the last encountered e
 
 You need to download [minilibx-linux](https://github.com/42paris/minilibx-linux) first:
 - make sure you're in the root directory of this repository,
-- run `https://github.com/42paris/minilibx-linux.git minilibx-linux` on your terminal,
+- run `git clone https://github.com/42paris/minilibx-linux.git minilibx-linux` on your terminal,
 - run `make -C minilibx-linux` (or `cd minilibx-linux && make`).
 
 After that, if you type `make` in the root directory (where the makefile is), it will compile both the mandatory version and the bonus one.  
 If you want to compile them separately, run either `make so_long` or `make so_long_bonus`.
+
+**Side note!** I made a [.ber highlighter](https://github.com/erengazioglu/42-ber-highlighter) for this project. To install, simply run:
+```bash
+    git clone https://github.com/erengazioglu/42-ber-highlighter.git ~/.vscode/extensions/pompyproductions.42-ber-highlighter
+```
+
+Then you can proceed to launching VSCode (or reloading the window if you have it open already), your maps should now be highlighted correctly!
 
 ### Running
 
