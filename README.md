@@ -113,15 +113,20 @@ The game object has an `error` variable (enum) that holds the last encountered e
 
 ### Compilation
 
-Running `make` will compile both the mandatory version and the bonus one.  
-If you want to compile them separately: `make so_long` or `make bonus`.
+You need to download [minilibx-linux](https://github.com/42paris/minilibx-linux) first:
+- make sure you're in the root directory of this repository,
+- run `https://github.com/42paris/minilibx-linux.git minilibx-linux` on your terminal,
+- run `make -C minilibx-linux` (or `cd minilibx-linux && make`).
+
+After that, if you type `make` in the root directory (where the makefile is), it will compile both the mandatory version and the bonus one.  
+If you want to compile them separately, run either `make so_long` or `make so_long_bonus`.
 
 ### Running
 
 The program (`so_long` or `so_long_bonus`) expects 1 argument only: the relative filepath to the game map. Examples:  
 - `so_long assets/maps/subject-1.ber` (will run the first example in the subject pdf)
-- `so_long_bonus assets/maps/bonus/bonus-01.ber` (will run a map with all bonus features)
-- `so_long assets/maps/bonus/bonus-01.ber` (will crash because of bonus tiles not being handled by the mandatory-only version)
+- `so_long_bonus assets/maps/bonus/complete-1.ber` (will run a map with all bonus features)
+- `so_long assets/maps/bonus/complete-1.ber` (will crash because of bonus tiles not being handled by the mandatory-only version)
 
 ### Testing
 
@@ -129,7 +134,26 @@ A set of invalid maps are available under `assets/maps/invalid`, that you can ru
 
 Running bonus maps (`assets/maps/bonus`) through the mandatory-only version (`so_long`) will result in a crash — this is expected behavior, since the bonus maps include tiles that are not specified in the subject brief.
 
-
 ## Resources
 
-- MiniLibX man pages.
+### References
+- MiniLibX source code & man pages (`man minilibx-linux/man/man1/*`),
+- `man gettimeofday`,
+- fellow students.
+
+### Utilities
+
+I used [ImageMagick](https://imagemagick.org/#gsc.tab=0) to convert my .png files into .xpm:
+
+```bash
+for file in assets/*.bmp; 
+do magick "$file" "${file%.png}.xpm"; 
+done
+```
+
+### Textures 
+
+Floor and wall textures are created by me from scratch.
+The rest are originally from the [kenney.nl 1-Bit Pack](https://kenney.nl/assets/1-bit-pack), adapted by me to be duo-tone, consistent, and animated.
+
+

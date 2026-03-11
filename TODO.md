@@ -1,13 +1,4 @@
-# To-do before finishing
-
-## MUST do
-
-### Malloc
-
-Test extensively for graceful exit:
-- for each type of invalid map,
-- for closing after death,
-- for closing after winning.
+# 42 submit checklist
 
 ### Miscellaneous
 
