@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 00:42:29 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/11 12:12:47 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/11 12:46:24 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	end_game(t_game *game, bool win)
 {
-	if (game->coins)
+	if (win && game->coins)
 	{
 		render_text(game, "You haven't collected all the coins yet!", MLX_BLUE);
 		return;
@@ -29,42 +29,48 @@ void	end_game(t_game *game, bool win)
 	if (win)
 		render_text(game, "You win the game! Press any key to exit.", MLX_GREEN);
 	else
-		render_text(game, "You win the game! Press any key to exit.", MLX_RED);
+		render_text(game, "A dead player is you! Press any key to exit.", MLX_RED);
 }
 
 void	pick_up(t_game *game, t_obj *obj, int dir[2])
 {
-		if (obj->type == 'C')
-		{
-			game->score += 5;
-			game->coins -= 1;
-		}
-		else if (obj->type == 'W')
-		{
-			game->player->anim = game->textures->player_weapon;
-			game->weapon = true;
-		}
-		else
-			game->keys += 1;
-		destroy_obj(game, obj);
-		move_player(game, dir);
+	render_text(game, "", MLX_RED);
+	if (obj->type == 'C')
+	{
+		game->score += 5;
+		game->coins -= 1;
+	}
+	else if (obj->type == 'W')
+	{
+		game->player->anim = game->textures->player_weapon;
+		game->weapon = true;
+	}
+	else
+		game->keys += 1;
+	destroy_obj(game, obj);
+	move_player(game, dir);
 }
 
 void	interact(t_game *game, t_obj *obj, int dir[2])
 {
 	if (ft_strchr("CWK", obj->type))
 		pick_up(game, obj, dir);
-	else if (obj->type == 'L' && game->keys)
-		(destroy_obj(game, obj), game->keys -= 1);
+	else if (obj->type == 'L')
+	{
+		if (!game->keys)
+			render_text(game, "You need a key.", MLX_BLUE);
+		else
+		{
+			render_text(game, "", MLX_BLUE);
+			(destroy_obj(game, obj), game->keys -= 1);
+		}
+	}
 	else if (ft_strchr("X>v<^", obj->type))
 	{
 		if (game->weapon)
 			(destroy_obj(game, obj), game->score += 1);
 		else
-		{
-			game->moves++;
-			end_game(game, false);
-		}
+			render_text(game, "You need a weapon for that.", MLX_RED);
 	}
 	 
 }

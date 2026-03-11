@@ -6,7 +6,7 @@
 /*   By: egaziogl <egaziogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 09:24:24 by egaziogl          #+#    #+#             */
-/*   Updated: 2026/03/11 12:10:36 by egaziogl         ###   ########.fr       */
+/*   Updated: 2026/03/11 12:42:26 by egaziogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	render_text(t_game *game, char *str, int color)
 	clear_size[0] = 1000;
 	clear_size[1] = 24;
 	clear_square(game, 
-		16 + GRID_MULT * GRID_SIZE * 3,
+		12 + GRID_MULT * GRID_SIZE * 3,
 		(game->map_size[1]) * GRID_MULT * GRID_SIZE + 1,
 		clear_size
 	);
@@ -42,7 +42,6 @@ void	render_text(t_game *game, char *str, int color)
 		16 + GRID_MULT * GRID_SIZE * 3,
 		(game->map_size[1]) * GRID_MULT * GRID_SIZE + 16,
 		color, str
-		
 	);
 }
 
